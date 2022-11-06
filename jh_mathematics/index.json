@@ -6,17 +6,32 @@
   {
     "part": "文字と式",
     "chapter": [
-      { "title": "政治と経済", "href": "#" },
-      { "title": "経済から見た教育と勉強", "href": "#" },
-      { "title": "経済とブラック企業の関係", "href": "#" }
+      { "title": "正の数・負の数", "href": "#" },
+      { "title": "平方根", "href": "#" },
+      { "title": "文字を用いた式", "href": "#" },
+      { "title": "因数分解", "href": "#" },
+      { "title": "方程式", "href": "#" }
     ]
   },
   {
     "part": "図形",
-    "chapter": [{ "title": "政治と経済", "href": "#" }]
+    "chapter": [
+      { "title": "平面図形", "href": "#" },
+      { "title": "空間図形", "href": "#" },
+      { "title": "合同", "href": "#" },
+      { "title": "相似", "href": "#" },
+      { "title": "円周角", "href": "#" },
+      { "title": "三平方の定理", "href": "#" }
+    ]
   },
   {
     "part": "データの活用",
-    "chapter": [{ "title": "政治と経済", "href": "#" }]
+    "chapter": [
+      { "title": "関数とグラフ", "href": "#" },
+      { "title": "度数の分布", "href": "#" },
+      { "title": "合同", "href": "#" },
+      { "title": "確率", "href": "#" },
+      { "title": "標本調査", "href": "#" }
+    ]
   }
 ]
