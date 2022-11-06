@@ -1,0 +1,26 @@
+[
+  {
+    "course": "jh_economy",
+    "name": "中学生に学んで欲しい経済入門",
+    "date": "22022/02/02",
+    "open": true
+  },
+  {
+    "course": "beginner_programming",
+    "name": "プログラミングはじめます？",
+    "date": "****",
+    "open": false
+  },
+  {
+    "course": "jh_mathematics",
+    "name": "ザックリ中学数学",
+    "date": "****",
+    "open": false
+  },
+  {
+    "course": "giveup-English",
+    "name": "ギブアップ英語",
+    "date": "****",
+    "open": false
+  }
+]
