@@ -9,35 +9,35 @@
   {
     "course": "jh_economy",
     "name": "中学生に学んで欲しい経済入門",
-    "date": "****",
+    "date": "制作中",
     "tag": ["中学", "経済学"],
     "open": false
   },
   {
     "course": "beginner_programming",
-    "name": "プログラミングはじめます？",
-    "date": "****",
+    "name": "何度も挫けるプログラミング",
+    "date": "制作中",
     "tag": ["プログラミング"],
     "open": false
   },
   {
     "course": "giveup_English",
     "name": "ギブアップ英語",
-    "date": "****",
+    "date": "制作中",
     "tag": ["英語"],
     "open": false
   },
   {
     "course": "finding_scholarship",
     "name": "やりたいことの見つけ方：学問編",
-    "date": "****",
+    "date": "制作中",
     "tag": ["将来"],
     "open": false
   },
   {
     "course": "finding_job",
     "name": "やりたいことの見つけ方：職業編",
-    "date": "****",
+    "date": "制作中",
     "tag": ["将来"],
     "open": false
   }

@@ -40,7 +40,7 @@
 
         <!-- 右 -->
         <section>
-          <router-link to="/creditinfo">利用素材</router-link>
+          <router-link to="/creditinfo">お借りした素材</router-link>
           <!-- <div>問い合わせ(制作中)</div> -->
         </section>
       </section>
@@ -98,7 +98,7 @@ export default {
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1rem;
 }
 
@@ -125,7 +125,7 @@ export default {
 }
 
 .card .title {
-  padding: 0 1rem;
+  padding: 0.2rem 1rem;
 }
 
 .card .date {
@@ -182,5 +182,10 @@ footer {
 footer .around {
   display: flex;
   justify-content: space-around;
+}
+
+footer a {
+  color: #222;
+  text-decoration: auto;
 }
 </style>
