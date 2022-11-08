@@ -3,24 +3,42 @@
     "course": "jh_mathematics",
     "name": "ザックリ中学数学",
     "date": "2022/11/06",
+    "tag": ["中学", "数学"],
     "open": true
   },
   {
     "course": "jh_economy",
     "name": "中学生に学んで欲しい経済入門",
     "date": "****",
+    "tag": ["中学", "経済学"],
     "open": false
   },
   {
     "course": "beginner_programming",
     "name": "プログラミングはじめます？",
     "date": "****",
+    "tag": ["プログラミング"],
     "open": false
   },
   {
-    "course": "giveup-English",
+    "course": "giveup_English",
     "name": "ギブアップ英語",
     "date": "****",
+    "tag": ["英語"],
+    "open": false
+  },
+  {
+    "course": "finding_scholarship",
+    "name": "やりたいことの見つけ方：学問編",
+    "date": "****",
+    "tag": ["将来"],
+    "open": false
+  },
+  {
+    "course": "finding_job",
+    "name": "やりたいことの見つけ方：職業編",
+    "date": "****",
+    "tag": ["将来"],
     "open": false
   }
 ]

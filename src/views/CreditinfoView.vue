@@ -1,14 +1,17 @@
 <template>
   <HeaderNav></HeaderNav>
   <section class="wapper">
-    <img alt="ロゴ" src="../assets/logo.png" />
-    <div>利用素材</div>
-    <table>
-      <tr v-for="(item, index) in credit" :key="index">
-        <th>{{ item.type }}</th>
-        <td>{{ item.name }}</td>
-      </tr>
-    </table>
+    <!-- <img alt="ロゴ" src="../assets/logo.png" /> -->
+    <b>お借りした素材</b>
+
+    <section class="materials">
+      <div v-for="(item, index) in credit" :key="index">
+        <b>{{ item.type }}</b>
+        <ul>
+          <li v-for="(name, index) in item.names" :key="index">{{ name }}</li>
+        </ul>
+      </div>
+    </section>
   </section>
 </template>
 
@@ -18,19 +21,27 @@ import HeaderNav from "@/components/HeaderNav.vue";
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: "HomeView",
+  name: "CreditinfoView",
   components: {
     HeaderNav,
   },
   data() {
     return {
       credit: [
-        // { type: "キャラ画像", name: "stable diffusion" },
-        { type: "キャラボイス", name: "vocebox" },
-        { type: "画像", name: "kumono" },
-        { type: "", name: "Canva" },
-        { type: "", name: "いらすとや" },
-        { type: "", name: "stable diffusion" },
+        { type: "キャラボイス", names: ["voicevox"] },
+        {
+          type: "画像",
+          names: [
+            "Canva",
+            "illust8",
+            "kumono",
+            "Topecon Heroes",
+            "stable diffusion",
+            "イラストパーク",
+            "いらすとや",
+            "パブリックドメインQ",
+          ],
+        },
       ],
     };
   },
@@ -41,7 +52,16 @@ export default {
 .wapper {
   padding: 2rem;
 }
-table {
-  text-align: left;
+
+b {
+  font-size: larger;
+}
+
+.materials {
+  padding: 1rem;
+}
+
+.materials ul {
+  margin: 0 0 1rem;
 }
 </style>
