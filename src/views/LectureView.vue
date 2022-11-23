@@ -329,12 +329,13 @@ main {
 .actor {
   max-height: 100%;
   margin: auto;
+  border-radius: 10px;
 }
 
 /* メッセージウィンドウ */
 .messageArea .messagewindow {
   box-sizing: border-box;
-  height: 196px;
+  height: 176px;
   background-color: rgb(0, 0, 0, 0.8);
   border-radius: 10px;
   display: flex;
