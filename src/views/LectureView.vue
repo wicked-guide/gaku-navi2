@@ -16,7 +16,6 @@
     <main>
       <!-- スライドエリア -->
       <section class="slideArea">
-        <!-- <img :src="'./jh_economy/01/img/01-03.png'" class="slideImg" /> -->
         <img :src="slideImage" class="slideImg" />
       </section>
 
@@ -75,8 +74,8 @@
         <li
           v-for="(slide, index) in scenario"
           :key="index"
-          :class="{ isTrue: index == slideIndex }"
-          @click="slideJump(index)"
+          :class="{ isTrue: index == pageIndex }"
+          @click="pageJump(index)"
         >
           {{ ("00" + (index + 1)).slice(-2) }}：{{ slide.title }}
         </li>
@@ -101,7 +100,7 @@ export default {
       isVoice: true, // 音声再生
       isSkip: true, // オートスキップ
       // 再生コントロール
-      slideIndex: 0, // スライドの現在地
+      pageIndex: 0, // スライドの現在地
       messageIndex: 0, // メッセージの現在地
       messageVoice: new Audio(""), //表示メッセージ音声
     };
@@ -142,8 +141,8 @@ export default {
       this.isMenu = !this.isMenu;
     },
     // もくじ：スライドジャンプ
-    slideJump(index) {
-      this.slideIndex = index;
+    pageJump(index) {
+      this.pageIndex = index;
       this.messageIndex = 0;
       this.messageVoice.pause();
       if (this.isVoice) {
@@ -165,7 +164,7 @@ export default {
           this.messageIndex++;
           // 各スライドの最終メッセージ⇒次のスライド
           if (this.messageText == "LAST") {
-            this.slideIndex++;
+            this.pageIndex++;
             this.messageIndex = 0;
           }
       }
@@ -178,7 +177,7 @@ export default {
     voicePlay() {
       this.messageVoice.pause(); // 一旦停止
       let voice =
-        this.scenario[this.slideIndex].message[this.messageIndex].voice;
+        this.scenario[this.pageIndex].message[this.messageIndex].voice;
       if (voice) {
         this.messageVoice = new Audio(
           "./" + this.course + "/" + this.id + "/voice/" + voice
@@ -196,7 +195,7 @@ export default {
     // 戻る際にリセット
     reset() {
       this.messageVoice.pause();
-      this.slideIndex = 0;
+      this.pageIndex = 0;
       this.messageIndex = 0;
     },
   },
@@ -204,14 +203,14 @@ export default {
     // スライドイメージ
     slideImage() {
       try {
-        if (this.scenario[this.slideIndex].slide) {
+        if (this.scenario[this.pageIndex].message[this.messageIndex].slide) {
           return (
             "./" +
             this.course +
             "/" +
             this.id +
             "/img/" +
-            this.scenario[this.slideIndex].slide
+            this.scenario[this.pageIndex].message[this.messageIndex].slide
           );
         } else {
           return "./common/background/sky_blue.png";
@@ -224,11 +223,10 @@ export default {
     // アクター
     actorName() {
       try {
-        if (!this.scenario[this.slideIndex].message[this.messageIndex].actor) {
+        if (!this.scenario[this.pageIndex].message[this.messageIndex].actor) {
           return "No Name";
         } else {
-          return this.scenario[this.slideIndex].message[this.messageIndex]
-            .actor;
+          return this.scenario[this.pageIndex].message[this.messageIndex].actor;
         }
       } catch {
         return "No Name";
@@ -237,13 +235,13 @@ export default {
     actorImage() {
       try {
         if (
-          !this.scenario[this.slideIndex].message[this.messageIndex].actorImg
+          !this.scenario[this.pageIndex].message[this.messageIndex].actorImg
         ) {
           return "./common/actor/Tsumugi-01.png";
         } else {
           return (
             "./common/actor/" +
-            this.scenario[this.slideIndex].message[this.messageIndex].actorImg
+            this.scenario[this.pageIndex].message[this.messageIndex].actorImg
           );
         }
       } catch {
@@ -254,7 +252,7 @@ export default {
     // メッセージテキスト
     messageText() {
       try {
-        return this.scenario[this.slideIndex].message[this.messageIndex].text;
+        return this.scenario[this.pageIndex].message[this.messageIndex].text;
       } catch {
         return "LAST";
       }
