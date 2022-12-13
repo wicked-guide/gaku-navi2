@@ -17,8 +17,6 @@
 
 <script>
 import HeaderNav from "@/components/HeaderNav.vue";
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: "CreditinfoView",
@@ -33,6 +31,7 @@ export default {
           type: "画像",
           names: [
             "Canva",
+            "icon-rainbow",
             "illust8",
             "kumono",
             "Topecon Heroes",
