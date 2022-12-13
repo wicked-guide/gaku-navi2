@@ -1,7 +1,6 @@
 <!-- コース別もくじページ -->
 <template>
   <HeaderNav></HeaderNav>
-  <!-- <h1>This is an {{ id }} page</h1> -->
   <section class="wapper">
     <!-- サムネイル -->
     <img :src="'./thumbnail/' + course + '.png'" class="thumbnail" />
@@ -68,7 +67,6 @@ export default {
 .wapper {
   margin: 2rem auto;
   padding: 0 2rem;
-  /* max-width: 600px; */
 }
 
 @media (min-width: 800px) {
@@ -81,13 +79,16 @@ export default {
 
 .thumbnail {
   max-width: 100%;
-  /* max-height: 300px; */
 }
 
 /* もくじ */
 .contentIndex {
-  max-height: 85vh;
+  max-height: calc(100vh - 120px);
   overflow: auto;
+}
+
+.contentIndex::-webkit-scrollbar {
+  display: none;
 }
 
 .contentIndex .part {
