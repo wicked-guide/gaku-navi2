@@ -40,5 +40,12 @@
     "date": "制作中",
     "tag": ["将来"],
     "open": false
+  },
+  {
+    "course": "how_to_note",
+    "name": "ノートの取り方",
+    "date": "制作中",
+    "tag": ["勉強", "ビジネス"],
+    "open": false
   }
 ]
