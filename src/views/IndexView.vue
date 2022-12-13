@@ -114,10 +114,11 @@ export default {
 /* コース */
 .card {
   background-color: white;
+  transition: box-shadow 0.3s;
 }
 
 .card:hover {
-  box-shadow: 1px 1px 3px;
+  box-shadow: 3px 3px 5px;
 }
 
 .card img {
