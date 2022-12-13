@@ -6,6 +6,7 @@
 body {
   margin: 0;
   background: aliceblue;
+  caret-color: transparent;
 }
 
 #app {
@@ -17,5 +18,9 @@ body {
 
 .none {
   display: none;
+}
+
+input {
+  caret-color: black;
 }
 </style>
