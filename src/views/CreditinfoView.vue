@@ -1,7 +1,6 @@
 <template>
   <HeaderNav></HeaderNav>
   <section class="wapper">
-    <!-- <img alt="ロゴ" src="../assets/logo.png" /> -->
     <b>お借りした素材</b>
 
     <section class="materials">

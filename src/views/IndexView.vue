@@ -17,7 +17,7 @@
           <router-link
             :to="{ name: 'IndexList', params: { course: item.course } }"
           >
-            <img :src="'./thumbnail/' + item.course + '.png'" />
+            <img :src="'./thumbnail/' + item.course + '.png'" alt="thumbnail" />
             <span class="tag" v-for="(tag, index) in item.tag" :key="index">{{
               tag
             }}</span>

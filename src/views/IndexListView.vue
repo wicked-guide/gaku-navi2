@@ -3,7 +3,11 @@
   <HeaderNav></HeaderNav>
   <section class="wapper">
     <!-- サムネイル -->
-    <img :src="'./thumbnail/' + course + '.png'" class="thumbnail" />
+    <img
+      :src="'./thumbnail/' + course + '.png'"
+      class="thumbnail"
+      alt="thumbnail"
+    />
 
     <!-- もくじ -->
     <section class="contentIndex">

@@ -16,7 +16,7 @@
     <main>
       <!-- スライドエリア -->
       <section class="slideArea">
-        <img :src="slideImage" class="slideImg" />
+        <img :src="slideImage" class="slideImg" alt="slide" />
       </section>
 
       <!-- メッセージエリア -->
@@ -55,8 +55,7 @@
         <section class="messagewindow" @click="next">
           <!-- アクター -->
           <section v-show="isActor">
-            <!-- <img :src="'./common/actor/Tsumugi-01.png'" class="actor" /> -->
-            <img :src="actorImage" class="actor" />
+            <img :src="actorImage" class="actor" alt="actor" />
           </section>
 
           <!-- メッセージ -->
