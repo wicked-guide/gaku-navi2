@@ -47,5 +47,12 @@
     "date": "制作中",
     "tag": ["勉強", "ビジネス"],
     "open": false
+  },
+  {
+    "course": "business_tips",
+    "name": "アルバイト初心者の心得",
+    "date": "制作中",
+    "tag": ["ビジネス"],
+    "open": false
   }
 ]
