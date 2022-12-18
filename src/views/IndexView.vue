@@ -7,28 +7,49 @@
     <!-- ボディ -->
     <section class="wapper">
       <!-- メイン -->
-      <!-- 検索 -->
-      <input type="search" class="search" v-model="search" placeholder="検索" />
+      <main>
+        <!-- 検索 -->
+        <input
+          type="search"
+          class="search"
+          v-model="search"
+          placeholder="検索"
+        />
 
-      <!-- 一覧 -->
-      <section class="grid">
-        <div class="card" v-for="item in searchCourse" :key="item.name">
-          <!-- コース名：パスパラメータ -->
-          <router-link
-            :to="{ name: 'IndexList', params: { course: item.course } }"
-          >
-            <img :src="'./thumbnail/' + item.course + '.png'" alt="thumbnail" />
-            <span class="tag" v-for="(tag, index) in item.tag" :key="index">{{
-              tag
-            }}</span>
-            <div class="title">{{ item.name }}</div>
-            <div class="date">{{ item.date }}</div>
-          </router-link>
-        </div>
-      </section>
+        <!-- 一覧 -->
+        <section class="grid">
+          <div class="card" v-for="item in searchCourse" :key="item.name">
+            <!-- コース名：パスパラメータ -->
+            <router-link
+              :to="{ name: 'IndexList', params: { course: item.course } }"
+            >
+              <img
+                :src="'./thumbnail/' + item.course + '.png'"
+                alt="thumbnail"
+              />
+              <span class="tag" v-for="(tag, index) in item.tag" :key="index">{{
+                tag
+              }}</span>
+              <div class="title">{{ item.name }}</div>
+              <div class="date">{{ item.date }}</div>
+            </router-link>
+          </div>
+        </section>
+      </main>
 
       <!-- サブ -->
-      <section></section>
+      <aside>
+        <!-- ミニゲーム -->
+        <section class="minigame">
+          <div class="title">ミニゲーム</div>
+          <div v-for="item in games" :key="item.name">
+            <router-link :to="{ name: 'game', params: { id: item.id } }">
+              {{ item.name }}
+            </router-link>
+          </div>
+          <router-link :to="{ name: 'gameIndex' }"> 一覧 </router-link>
+        </section>
+      </aside>
     </section>
 
     <!-- フッター -->
@@ -62,7 +83,7 @@ export default {
     return {
       course: [],
       search: "",
-      extra: true,
+      games: [],
     };
   },
   mounted() {
@@ -71,6 +92,13 @@ export default {
     axios
       .get(url)
       .then((response) => (this.course = response.data))
+      .catch((error) => console.log(error));
+
+    // jsonからゲームを取得
+    const gameurl = "./games.json";
+    axios
+      .get(gameurl)
+      .then((response) => (this.games = response.data))
       .catch((error) => console.log(error));
   },
   computed: {
@@ -92,10 +120,13 @@ export default {
   padding-bottom: 5rem;
   position: relative;
 }
+
+/* レイアウト */
 .wapper {
-  margin: 1rem 2rem;
+  margin: 1rem 1rem;
 }
 
+/* メインエリア */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -148,24 +179,35 @@ export default {
   text-decoration: auto;
 }
 
-/* おまけ */
-.extra {
-  background: floralwhite;
-  padding: 1rem;
-  border-radius: 10px;
+/* サブエリア */
+.wapper aside {
+  display: none; /* 作成中のため非表示 */
+  width: 200px;
+  margin-top: 1rem;
 }
 
-.extra a {
-  display: block;
-  text-decoration: none;
-  color: steelblue;
+.wapper aside .minigame {
   padding: 0.5rem;
-  border-radius: 10px;
+  background: beige;
+  border-radius: 0.5rem;
 }
 
-.extra a:hover {
-  background-color: steelblue;
-  color: white;
+.wapper aside .title {
+  text-align: center;
+  font-weight: bold;
+  background-color: bisque;
+}
+
+.wapper aside a {
+  display: block;
+  margin-top: 0.2rem;
+  color: black;
+  text-decoration: auto;
+}
+
+.wapper aside a:hover {
+  background-color: burlywood;
+  border-radius: 5px;
 }
 
 /* フッター */
@@ -188,5 +230,17 @@ footer .around {
 footer a {
   color: #222;
   text-decoration: auto;
+}
+
+/* レスポンシブ */
+@media (min-width: 1000px) {
+  .wapper {
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  .wapper aside {
+    margin-left: 1rem;
+  }
 }
 </style>
