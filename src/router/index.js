@@ -4,8 +4,8 @@ import IndexView from "../views/IndexView.vue";
 import IndexListView from "../views/IndexListView.vue";
 import LectureView from "../views/LectureView.vue";
 import CreditinfoView from "../views/CreditinfoView.vue";
-import GameIndexView from "../views/GameIndexView.vue";
-import GameView from "../views/GameView.vue";
+import GameIndexView from "../views/games/GameIndexView.vue";
+import GameView from "../views/games/GameView.vue";
 
 const routes = [
   // トップページ

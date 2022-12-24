@@ -2,7 +2,7 @@
   <HeaderNav></HeaderNav>
   <section class="wapper">
     {{ id }}
-
+    <h5>{{ games }}</h5>
     <!-- 問題 -->
     <section>
       <div>問題</div>
@@ -13,7 +13,7 @@
       <table>
         <tr>
           <td>
-            <img src="@/assets/games/img/mole.png" />
+            <img :src="'./thumbnail/business_tips.png'" />
             <div class="ans">50</div>
           </td>
           <td>
@@ -43,6 +43,7 @@ export default {
       id: this.$route.params.id, // パスパラメータ：ID
     };
   },
+  mounted() {},
 };
 </script>
 
