@@ -106,7 +106,8 @@ export default {
   },
   mounted() {
     // jsonからコースを取得
-    const url = "./" + this.course + "/" + this.id + "/scenario.json";
+    const url = `./${this.course}/${this.id}/scenario.json`;
+
     axios
       .get(url)
       .then((response) => (this.scenario = response.data))
@@ -179,7 +180,7 @@ export default {
         this.scenario[this.pageIndex].message[this.messageIndex].voice;
       if (voice) {
         this.messageVoice = new Audio(
-          "./" + this.course + "/" + this.id + "/voice/" + voice
+          `/${this.course}/${this.id}/voice/${voice}`
         );
         this.messageVoice.play(); // 再生
         // オートスキップ
@@ -203,14 +204,9 @@ export default {
     slideImage() {
       try {
         if (this.scenario[this.pageIndex].message[this.messageIndex].slide) {
-          return (
-            "./" +
-            this.course +
-            "/" +
-            this.id +
-            "/img/" +
+          return `./${this.course}/${this.id}/img/${
             this.scenario[this.pageIndex].message[this.messageIndex].slide
-          );
+          }`;
         } else {
           return "./common/background/sky_blue.png";
         }
@@ -238,10 +234,9 @@ export default {
         ) {
           return "./common/actor/Tsumugi-01.png";
         } else {
-          return (
-            "./common/actor/" +
+          return `./common/actor/${
             this.scenario[this.pageIndex].message[this.messageIndex].actorImg
-          );
+          }`;
         }
       } catch {
         return "./common/actor/Tsumugi-01.png";
@@ -272,8 +267,6 @@ export default {
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto;
-  /* gap: 1rem; */
-  /* user-select: none; */
 }
 
 /* メイン */
@@ -289,6 +282,7 @@ main {
 .slideArea {
   margin: auto;
 }
+
 /* スライド */
 .slideArea .slideImg {
   max-width: 100%;
