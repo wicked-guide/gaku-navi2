@@ -107,7 +107,6 @@ export default {
   mounted() {
     // jsonからコースを取得
     const url = `./${this.course}/${this.id}/scenario.json`;
-
     axios
       .get(url)
       .then((response) => (this.scenario = response.data))
@@ -173,9 +172,12 @@ export default {
         this.voicePlay();
       }
     },
+
     // ボイスセット⇒再生
     voicePlay() {
-      this.messageVoice.pause(); // 一旦停止
+      // 再生中なら一旦停止
+      this.messageVoice.pause();
+      // ボイスの有無を判断してセット
       let voice =
         this.scenario[this.pageIndex].message[this.messageIndex].voice;
       if (voice) {
@@ -192,13 +194,14 @@ export default {
       }
     },
 
-    // 戻る際にリセット
+    // 前のページに戻る際にリセット
     reset() {
       this.messageVoice.pause();
       this.pageIndex = 0;
       this.messageIndex = 0;
     },
   },
+
   computed: {
     // スライドイメージ
     slideImage() {
@@ -404,25 +407,27 @@ nav ul li {
 
 /* レスポンシブ */
 @media (max-width: 800px) {
-  .wapper {
-    display: flex;
-    /* flex-direction: column; */
-    height: fit-content;
-  }
-
   .leftMenu,
   .rightMenu {
     padding: 0rem;
   }
-  /* .rightMenu button {
-    margin-left: 0;
-  } */
+
   .messagewindow,
   nav ul {
     font-size: medium;
   }
   .actor {
     display: none;
+  }
+}
+
+@media (max-height: 500px) {
+  .slideArea .slideImg {
+    max-height: calc(100vh - 135px);
+  }
+  .messageArea .messagewindow {
+    height: 90px;
+    font-size: unset;
   }
 }
 </style>
