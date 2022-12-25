@@ -182,7 +182,7 @@ export default {
         this.scenario[this.pageIndex].message[this.messageIndex].voice;
       if (voice) {
         this.messageVoice = new Audio(
-          `/${this.course}/${this.id}/voice/${voice}`
+          "./" + this.course + "/" + this.id + "/voice/" + voice
         );
         this.messageVoice.play(); // 再生
         // オートスキップ
