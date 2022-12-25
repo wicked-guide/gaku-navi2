@@ -411,8 +411,10 @@ nav ul li {
   .rightMenu {
     padding: 0rem;
   }
+  .messageArea .messagewindow .message {
+    font-size: unset;
+  }
 
-  .messagewindow,
   nav ul {
     font-size: medium;
   }
@@ -428,6 +430,13 @@ nav ul li {
   .messageArea .messagewindow {
     height: 90px;
     font-size: unset;
+  }
+  .messageMenu button {
+    padding: 0 0.5rem;
+    font-weight: normal;
+  }
+  .actorName {
+    padding: 0 0.5rem;
   }
 }
 </style>
