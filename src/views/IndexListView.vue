@@ -55,7 +55,7 @@ export default {
   },
   mounted() {
     // jsonからコースを取得
-    const url = `./${this.course}/index.json`;
+    const url = "./" + this.course + "/index.json";
     axios
       .get(url)
       .then((response) => (this.contentIndex = response.data))

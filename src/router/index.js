@@ -1,5 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import IndexView from "../views/IndexView.vue";
 import IndexListView from "../views/IndexListView.vue";
 import LectureView from "../views/LectureView.vue";
@@ -52,15 +51,9 @@ const routes = [
 
   // 以下不要
   {
-    path: "/home",
-    name: "home",
-    component: HomeView,
-  },
-  {
     path: "/about",
     name: "about",
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    component: () => import("../views/AboutView.vue"),
   },
 ];
 
