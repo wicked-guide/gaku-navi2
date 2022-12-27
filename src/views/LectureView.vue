@@ -153,20 +153,18 @@ export default {
     // 進む
     next() {
       this.messageVoice.pause();
-      switch (this.messageText) {
-        // 最終スライドの最後のメッセージ⇒終了
-        case "END":
-          break;
-
-        // 通常時⇒次のメッセージ
-        default:
-          this.messageIndex++;
-          // 各スライドの最終メッセージ⇒次のスライド
-          if (this.messageText == "LAST") {
-            this.pageIndex++;
-            this.messageIndex = 0;
-          }
+      this.messageIndex++;
+      // 各スライドの最終メッセージ⇒次のスライド
+      if (this.messageText == "LAST") {
+        if (this.scenario.length == this.pageIndex + 1) {
+          this.messageIndex--;
+          return;
+        } else {
+          this.pageIndex++;
+          this.messageIndex = 0;
+        }
       }
+
       // 音声ありの時のみ再生
       if (this.isVoice) {
         this.voicePlay();
@@ -206,12 +204,12 @@ export default {
     // スライドイメージ
     slideImage() {
       try {
-        if (this.scenario[this.pageIndex].message[this.messageIndex].slide) {
+        if (!this.scenario[this.pageIndex].message[this.messageIndex].slide) {
+          return "./common/background/sky_blue.png";
+        } else {
           return `./${this.course}/${this.id}/img/${
             this.scenario[this.pageIndex].message[this.messageIndex].slide
           }`;
-        } else {
-          return "./common/background/sky_blue.png";
         }
       } catch {
         return { mes: "制作中です" };
@@ -275,7 +273,7 @@ export default {
 /* メイン */
 main {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1080px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
