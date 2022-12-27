@@ -1,2 +1,0 @@
-"use strict";(self["webpackChunkgaku_navi2"]=self["webpackChunkgaku_navi2"]||[]).push([[443],{5390:function(n,a,u){u.r(a),u.d(a,{default:function(){return k}});var e=u(3396);const t={class:"about"},i=(0,e._)("h1",null,"This is an about page",-1),r=[i];function s(n,a,u,i,s,c){return(0,e.wg)(),(0,e.iD)("div",t,r)}var c={name:"AboutView"},o=u(89);const f=(0,o.Z)(c,[["render",s]]);var k=f}}]);
-//# sourceMappingURL=about.81b3266b.js.map

@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkgaku_navi2"]=self["webpackChunkgaku_navi2"]||[]).push([[731],{5616:function(n,a,u){u.r(a),u.d(a,{default:function(){return f}});var e=u(3396),t=u.p+"img/logo.a791bace.png";const i={class:"about"},o=(0,e._)("h1",null,"This is an about page",-1),r=(0,e._)("img",{alt:"Vue logo",src:t},null,-1),s=[o,r];function c(n,a,u,t,o,r){return(0,e.wg)(),(0,e.iD)("div",i,s)}var l={name:"AboutView"},g=u(89);const b=(0,g.Z)(l,[["render",c]]);var f=b}}]);
+//# sourceMappingURL=731.1a9a2c3c.js.map
