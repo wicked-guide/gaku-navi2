@@ -3,8 +3,6 @@ import IndexView from "../views/IndexView.vue";
 import IndexListView from "../views/IndexListView.vue";
 import LectureView from "../views/LectureView.vue";
 import CreditinfoView from "../views/CreditinfoView.vue";
-import GameIndexView from "../views/games/GameIndexView.vue";
-import GameView from "../views/games/GameView.vue";
 
 const routes = [
   // トップページ
@@ -28,20 +26,6 @@ const routes = [
     component: LectureView,
   },
 
-  // ゲーム一覧
-  {
-    path: "/game",
-    name: "gameIndex",
-    component: GameIndexView,
-  },
-
-  // ゲーム
-  {
-    path: "/game/:id",
-    name: "game",
-    component: GameView,
-  },
-
   // 利用素材
   {
     path: "/creditinfo",
@@ -49,6 +33,24 @@ const routes = [
     component: CreditinfoView,
   },
 
+  // ゲーム一覧
+  {
+    path: "/game",
+    name: "gameIndex",
+    component: () => import("../views/games/GameIndexView.vue"),
+  },
+  // タイピング
+  {
+    path: "/game/typing",
+    name: "TouchTyping",
+    component: () => import("../views/games/TouchTypingView.vue"),
+  },
+  // ゲーム
+  // {
+  //   path: "/game/:id",
+  //   name: "game",
+  // component: () => import("../views/games/GameView.vue"),
+  // },
   // 以下不要
   {
     path: "/about",

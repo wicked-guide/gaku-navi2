@@ -4,8 +4,8 @@
   <section class="wapper">
     <!-- 一覧 -->
     <section class="grid">
-      <div class="card" v-for="item in games" :key="item.id">
-        <router-link :to="{ name: 'game', params: { id: item.id } }">
+      <div class="card" v-for="item in games" :key="item.id" v-show="item.open">
+        <router-link to="/game/typing">
           <div class="title">{{ item.name }}</div>
         </router-link>
       </div>

@@ -1,11 +1,19 @@
 [
   {
+    "id": "typing",
+    "name": "タイピング",
+    "date": "",
+    "description": "",
+    "tag": [],
+    "open": true
+  },
+  {
     "id": "whack-a-mole",
     "name": "もぐらたたき",
     "date": "",
     "description": "",
     "tag": [],
-    "open": true
+    "open": false
   },
   {
     "id": "neurasthenia",
@@ -13,7 +21,7 @@
     "date": "",
     "description": "",
     "tag": [],
-    "open": true
+    "open": false
   },
   {
     "id": "archeryole",
@@ -21,6 +29,6 @@
     "date": "",
     "description": "",
     "tag": [],
-    "open": true
+    "open": false
   }
 ]

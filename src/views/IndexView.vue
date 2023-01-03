@@ -42,8 +42,8 @@
         <!-- ミニゲーム -->
         <section class="minigame">
           <div class="title">ミニゲーム</div>
-          <div v-for="item in games" :key="item.name">
-            <router-link :to="{ name: 'game', params: { id: item.id } }">
+          <div v-for="item in games" :key="item.name" v-show="item.open">
+            <router-link to="/game/typing">
               {{ item.name }}
             </router-link>
           </div>
@@ -181,7 +181,7 @@ export default {
 
 /* サブエリア */
 .wapper aside {
-  display: none; /* 作成中のため非表示 */
+  /* display: none; 作成中のため非表示 */
   width: 200px;
   margin-top: 1rem;
 }
