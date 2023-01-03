@@ -47,6 +47,7 @@
             <button :class="isSkip ? 'isTrue' : 'isFalse'" @click="switchSkip">
               自動&#9654;
             </button>
+            <button @click="voiceStop">停止&#9632;</button>
             <button @click="voicePlay">もう一度&orarr;</button>
           </section>
         </section>
@@ -121,25 +122,25 @@ export default {
     switchActor() {
       this.isActor = !this.isActor;
     },
-    // 音声再生
+    // 切替：音声
     switchVoice() {
       this.isVoice = !this.isVoice;
       if (!this.isVoice) {
         this.isSkip = false;
       }
     },
-    // オートスキップ切り替え
+    // 切替：オートスキップ
     switchSkip() {
       this.isSkip = !this.isSkip;
       if (this.isSkip) {
         this.isVoice = true;
       }
     },
-    // 目次表示
+    // 切替：目次表示
     switchMenu() {
       this.isMenu = !this.isMenu;
     },
-    // もくじ：スライドジャンプ
+    // 移動：もくじジャンプ
     pageJump(index) {
       this.pageIndex = index;
       this.messageIndex = 0;
@@ -182,14 +183,19 @@ export default {
         this.messageVoice = new Audio(
           "./" + this.course + "/" + this.id + "/voice/" + voice
         );
-        this.messageVoice.play(); // 再生
-        // オートスキップ
+        this.messageVoice.play();
+        // ボイス終了⇒オートスキップ
         this.messageVoice.addEventListener("ended", () => {
           if (this.isSkip) {
             this.next();
           }
         });
       }
+    },
+
+    // ボイス中断
+    voiceStop() {
+      this.messageVoice.pause();
     },
 
     // 前のページに戻る際にリセット
@@ -199,7 +205,6 @@ export default {
       this.messageIndex = 0;
     },
   },
-
   computed: {
     // スライドイメージ
     slideImage() {
@@ -262,7 +267,7 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url("@/assets/common/background/sky_blue.png");
+  background-image: url("@/assets/common/background/cloud2.png");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -308,6 +313,7 @@ main {
   border: solid darkcyan;
   border-radius: 10px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 /* アクター */
