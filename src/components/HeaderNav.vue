@@ -14,7 +14,7 @@ export default {
 <style>
 .navheader {
   padding: 0.5rem;
-  background-color: steelblue;
+  background-color: var(--main-color);
   display: flex;
   justify-content: space-between;
 }

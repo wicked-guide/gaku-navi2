@@ -99,8 +99,8 @@ export default {
   padding-left: 0.5rem;
   font-size: large;
   font-weight: bold;
-  border-left: steelblue solid 5px;
-  border-bottom: solid steelblue thin;
+  border-left: var(--main-color) solid 5px;
+  border-bottom: solid var(--main-color) thin;
 }
 
 .contentIndex ol {
@@ -120,7 +120,7 @@ export default {
 
 .contentIndex ol li a:hover {
   display: block;
-  background-color: steelblue;
+  background-color: var(--main-color);
   color: white;
 }
 

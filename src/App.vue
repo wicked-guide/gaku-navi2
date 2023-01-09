@@ -3,9 +3,15 @@
 </template>
 
 <style>
+:root {
+  --main-color: rgb(96, 186, 192);
+  --main-color-rgb: 96, 186, 192;
+  --sub-color: rgb(96, 186, 192);
+  --back-color: rgb(255, 252, 240);
+}
 body {
   margin: 0;
-  background: aliceblue;
+  background-color: var(--back-color);
   caret-color: transparent;
 }
 
@@ -21,6 +27,6 @@ body {
 }
 
 input {
-  caret-color: black;
+  caret-color: var(--main-color);
 }
 </style>

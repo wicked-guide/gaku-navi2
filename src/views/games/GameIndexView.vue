@@ -1,16 +1,25 @@
 <!-- ミニゲーム一覧 -->
 <template>
   <HeaderNav></HeaderNav>
-  <section class="wapper">
+  <main>
+    <div class="title">ミニゲーム</div>
     <!-- 一覧 -->
-    <section class="grid">
-      <div class="card" v-for="item in games" :key="item.id" v-show="item.open">
-        <router-link to="/game/typing">
-          <div class="title">{{ item.name }}</div>
+    <ul class="card-layout">
+      <li v-for="item in games" :key="item.id" class="card">
+        <router-link :to="'game/' + item.href">
+          <div>
+            <strong> {{ item.name }}</strong>
+          </div>
+          <section>
+            <span class="tag" v-for="(tag, index) in item.tag" :key="index">
+              {{ tag }}
+            </span>
+          </section>
+          <div>{{ item.description }}</div>
         </router-link>
-      </div>
-    </section>
-  </section>
+      </li>
+    </ul>
+  </main>
 </template>
 
 <script>
@@ -27,9 +36,9 @@ export default {
   },
   mounted() {
     // jsonからゲームを取得
-    const gameurl = "./games.json";
+    const gameUrl = "./games.json";
     axios
-      .get(gameurl)
+      .get(gameUrl)
       .then((response) => (this.games = response.data))
       .catch((error) => console.log(error));
   },
@@ -37,50 +46,51 @@ export default {
 </script>
 
 <style scoped>
-.wapper {
-  margin: 2rem auto;
-  padding: 0 2rem;
+main {
+  padding: 2rem;
 }
-
-.grid {
+.title {
+  font-size: x-large;
+  font-weight: bold;
+}
+.card-layout {
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1rem;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
 
 .card {
+  list-style: none;
   background-color: white;
-  transition: box-shadow 0.3s;
+  border: solid var(--main-color) 1px;
+  border-radius: 0.5rem;
+}
+
+.card strong {
+  font-size: large;
 }
 
 .card:hover {
-  box-shadow: 3px 3px 5px;
+  box-shadow: 2px 2px 5px;
 }
 
-.card img {
-  width: 100%;
-}
-
-.card .title {
-  padding: 0.2rem 1rem;
-}
-
-.card .date {
-  padding: 0 1rem 0.5rem;
-  text-align: end;
+.card a {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-color);
+  text-decoration: none;
 }
 
 .card .tag {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: steelblue;
+  background-color: var(--main-color);
   color: white;
   border-radius: 5px;
-}
-
-.card a {
-  color: black;
-  text-decoration: auto;
 }
 </style>

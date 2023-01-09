@@ -41,13 +41,16 @@
       <aside>
         <!-- ミニゲーム -->
         <section class="minigame">
-          <div class="title">ミニゲーム</div>
-          <div v-for="item in games" :key="item.name" v-show="item.open">
+          <router-link :to="{ name: 'gameIndex' }">
+            <div class="title">ミニゲーム</div>
+          </router-link>
+
+          <!-- {{ games }} -->
+          <div v-for="item in games" :key="item.id">
             <router-link to="/game/typing">
               {{ item.name }}
             </router-link>
           </div>
-          <router-link :to="{ name: 'gameIndex' }"> 一覧 </router-link>
         </section>
       </aside>
     </section>
@@ -138,7 +141,7 @@ export default {
   margin-bottom: 0.5rem;
   padding: 0.2rem;
   font-size: larger;
-  border: solid 1px steelblue;
+  border: solid 1px var(--main-color);
   border-radius: 5px;
 }
 
@@ -169,7 +172,7 @@ export default {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: steelblue;
+  background-color: var(--main-color);
   color: white;
   border-radius: 5px;
 }
@@ -188,14 +191,14 @@ export default {
 
 .wapper aside .minigame {
   padding: 0.5rem;
-  background: beige;
+  background-color: rgba(var(--main-color-rgb), 0.2);
   border-radius: 0.5rem;
 }
 
 .wapper aside .title {
   text-align: center;
   font-weight: bold;
-  background-color: bisque;
+  background-color: rgba(var(--main-color-rgb), 0.3);
 }
 
 .wapper aside a {
@@ -206,7 +209,8 @@ export default {
 }
 
 .wapper aside a:hover {
-  background-color: burlywood;
+  color: white;
+  background-color: var(--main-color);
   border-radius: 5px;
 }
 
@@ -219,7 +223,7 @@ footer {
   width: 100%;
   text-align: center;
   align-items: baseline;
-  background-color: gainsboro;
+  background-color: rgba(var(--main-color-rgb), 0.5);
 }
 
 footer .around {

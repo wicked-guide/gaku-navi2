@@ -1,36 +1,32 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import IndexView from "../views/IndexView.vue";
-import IndexListView from "../views/IndexListView.vue";
-import LectureView from "../views/LectureView.vue";
-import CreditinfoView from "../views/CreditinfoView.vue";
 
 const routes = [
   // トップページ
   {
     path: "/",
     name: "index",
-    component: IndexView,
+    component: () => import("../views/IndexView.vue"),
   },
 
   // 目次
   {
     path: "/:course",
     name: "IndexList",
-    component: IndexListView,
+    component: () => import("../views/IndexListView.vue"),
   },
 
   // レクチャー
   {
     path: "/:course/:id",
     name: "lecture",
-    component: LectureView,
+    component: () => import("../views/LectureView.vue"),
   },
 
   // 利用素材
   {
     path: "/creditinfo",
     name: "creditinfo",
-    component: CreditinfoView,
+    component: () => import("../views/CreditinfoView.vue"),
   },
 
   // ゲーム一覧

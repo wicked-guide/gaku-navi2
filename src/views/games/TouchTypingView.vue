@@ -1,96 +1,78 @@
 <template>
-  <HeaderNav></HeaderNav>
-  <!-- 戻る -->
-  <router-link to="/game">
-    <button class="xlarge">&laquo;</button>
-  </router-link>
+  <HeaderNav />
   <section class="wapper">
-    <!-- 問題選択 -->
-    <nav>menu</nav>
+    <!-- 戻る -->
+    <router-link to="/game">
+      <button class="material-icons md-18">skip_previous</button>
+    </router-link>
 
-    <!-- タイピングエリア -->
-    <main class="">
-      <!-- デバッグ -->
-      <!-- <section>
-        <div>key: {{ key }}</div>
-        <div>code: {{ code }}</div>
-      </section> -->
-      <!-- 問題文・回答欄 -->
-      <section class="question">
-        <div>{{ curentQuestionJa }}</div>
-        <div>
-          <div>{{ curentQuestionEn }}</div>
-          <hr />
-          <div class="answer">{{ answer.join("") }}</div>
-        </div>
+    <main>
+      <h3>タッチタイピング</h3>
+
+      <!-- 問題 -->
+      <section class="question-area">
+        <div>{{ curentQuestion.ja }}</div>
+        <div>{{ curentQuestion.en }}</div>
+        <hr />
+        <div class="answer">{{ answer.join("") }}</div>
       </section>
-
       <!-- キーボード -->
-      <section>
+      <section class="keylayout">
         <section class="keylayout1">
-          <div
+          <button
             v-for="item in keyRow1"
-            :key="item.code"
+            :key="item.name"
             :class="[
               `key`,
-              item.key == key ? `hit` : ``,
-              item.key == just ? `here` : ``,
+              `key${item.class}`,
+              item.code == key ? `hit` : ``,
+              item.code == justOne ? `here` : ``,
             ]"
           >
             {{ item.name }}
-          </div>
+          </button>
         </section>
         <section class="keylayout2">
-          <div
+          <button
             v-for="item in keyRow2"
-            :key="item.code"
+            :key="item.name"
             :class="[
               `key`,
-              item.key == key ? `hit` : ``,
-              item.key == just ? `here` : ``,
+              `key${item.class}`,
+              item.code == key ? `hit` : ``,
+              item.code == justOne ? `here` : ``,
             ]"
           >
             {{ item.name }}
-          </div>
+          </button>
         </section>
         <section class="keylayout3">
-          <div
+          <button
             v-for="item in keyRow3"
-            :key="item.code"
+            :key="item.name"
             :class="[
               `key`,
-              item.key == key ? `hit` : ``,
-              item.key == just ? `here` : ``,
+              `key${item.class}`,
+              item.code == key ? `hit` : ``,
+              item.code == justOne ? `here` : ``,
             ]"
           >
             {{ item.name }}
-          </div>
+          </button>
         </section>
         <section class="keylayout4">
-          <div
+          <button
             v-for="item in keyRow4"
-            :key="item.code"
+            :key="item.name"
             :class="[
               `key`,
-              item.key == key ? `hit` : ``,
-              item.key == just ? `here` : ``,
+              `key${item.class}`,
+              item.code == key ? `hit` : ``,
+              item.code == justOne ? `here` : ``,
             ]"
           >
             {{ item.name }}
-          </div>
-        </section>
-        <section class="keylayout5">
-          <div
-            v-for="item in keyRow5"
-            :key="item.code"
-            :class="[
-              `key`,
-              item.key == key ? `hit` : ``,
-              item.key == just ? `here` : ``,
-            ]"
-          >
-            {{ item.name }}
-          </div>
+          </button>
         </section>
       </section>
     </main>
@@ -107,339 +89,507 @@ export default {
   },
   data() {
     return {
-      id: this.$route.params.id, // パスパラメータ：ID
-      key: "**",
+      // キーボード
+      key: "",
       code: "",
-      enkeys: [
+      jakeys: [
         {
-          name: "`",
-          key: "`",
-          code: "Backquote",
+          code: "半角/\n全角",
+          name: "半角/\n全角",
         },
         {
-          name: 1,
-          key: 1,
-          code: "Digit1",
+          code: "1",
+          name: "1",
         },
         {
-          name: 2,
-          key: 2,
-          code: "Digit2",
+          code: "2",
+          name: "2",
         },
         {
-          name: 3,
-          key: 3,
-          code: "Digit3",
+          code: "3",
+          name: "3",
         },
         {
-          name: 4,
-          key: 4,
-          code: "Digit4",
+          code: "4",
+          name: "4",
         },
         {
-          name: 5,
-          key: 5,
-          code: "Digit5",
+          code: "5",
+          name: "5",
         },
         {
-          name: 6,
-          key: 6,
-          code: "Digit6",
+          code: "6",
+          name: "6",
         },
         {
-          name: 7,
-          key: 7,
-          code: "Digit7",
+          code: "7",
+          name: "7",
         },
         {
-          name: 8,
-          key: 8,
-          code: "Digit8",
+          code: "8",
+          name: "8",
         },
         {
-          name: 9,
-          key: 9,
-          code: "Digit9",
+          code: "9",
+          name: "9",
         },
         {
-          name: 0,
-          key: 0,
-          code: "Digit0",
+          code: "0",
+          name: "0",
         },
         {
+          code: "-",
           name: "-",
-          key: "-",
-          code: "Minus",
         },
         {
-          name: "=",
-          key: "=",
-          code: "Equal",
+          code: "^",
+          name: "^",
         },
         {
-          name: "←",
-          key: "Backspace",
-          code: "Backspace",
+          code: "¥",
+          name: "¥",
         },
         {
-          name: "Tab",
-          key: "Tab",
-          code: "Tab",
+          code: "back/space",
+          name: "back\nspace",
         },
         {
+          code: "tab",
+          name: "TAB",
+        },
+        {
+          code: "q",
           name: "Q",
-          key: "q",
-          code: "KeyQ",
         },
         {
+          code: "w",
           name: "W",
-          key: "w",
-          code: "KeyW",
         },
         {
+          code: "e",
           name: "E",
-          key: "e",
-          code: "KeyE",
         },
         {
+          code: "r",
           name: "R",
-          key: "r",
-          code: "KeyR",
         },
         {
+          code: "t",
           name: "T",
-          key: "t",
-          code: "KeyT",
         },
         {
+          code: "y",
           name: "Y",
-          key: "y",
-          code: "KeyY",
         },
         {
+          code: "u",
           name: "U",
-          key: "u",
-          code: "KeyU",
         },
         {
+          code: "i",
           name: "I",
-          key: "i",
-          code: "KeyI",
         },
         {
+          code: "o",
           name: "O",
-          key: "o",
-          code: "KeyO",
         },
         {
+          code: "p",
           name: "P",
-          key: "p",
-          code: "KeyP",
         },
         {
+          code: "`",
+          name: "`",
+        },
+        {
+          code: "[",
           name: "[",
-          key: "[",
-          code: "BracketLeft",
         },
         {
-          name: "]",
-          key: "]",
-          code: "BracketRight",
-        },
-        {
-          name: "\\",
-          key: "\\",
-          code: "Backslash",
-        },
-        {
-          name: "CapsLock",
-          key: "CapsLock",
-          code: "CapsLock",
-        },
-        {
-          name: "A",
-          key: "a",
-          code: "KeyA",
-        },
-        {
-          name: "S",
-          key: "s",
-          code: "KeyS",
-        },
-        {
-          name: "D",
-          key: "d",
-          code: "KeyD",
-        },
-        {
-          name: "F",
-          key: "f",
-          code: "KeyF",
-        },
-        {
-          name: "G",
-          key: "g",
-          code: "KeyG",
-        },
-        {
-          name: "H",
-          key: "h",
-          code: "KeyH",
-        },
-        {
-          name: "J",
-          key: "j",
-          code: "KeyJ",
-        },
-        {
-          name: "K",
-          key: "k",
-          code: "KeyK",
-        },
-        {
-          name: "L",
-          key: "l",
-          code: "KeyL",
-        },
-        {
-          name: ";",
-          key: ";",
-          code: "Semicolon",
-        },
-        {
-          name: "'",
-          key: "'",
-          code: "Quote",
-        },
-        {
-          name: "Enter",
-          key: "Enter",
+          class: "Enter",
           code: "Enter",
+          name: "Enter",
         },
         {
-          name: "Shift",
-          key: "Shift",
-          code: "ShiftLeft",
+          code: "capslock",
+          name: "CAPSLOCK",
         },
         {
+          code: "a",
+          name: "A",
+        },
+        {
+          code: "s",
+          name: "S",
+        },
+        {
+          code: "d",
+          name: "D",
+        },
+        {
+          code: "f",
+          name: "F",
+        },
+        {
+          code: "g",
+          name: "G",
+        },
+        {
+          code: "h",
+          name: "H",
+        },
+        {
+          code: "j",
+          name: "J",
+        },
+        {
+          code: "k",
+          name: "K",
+        },
+        {
+          code: "l",
+          name: "L",
+        },
+        {
+          code: ";",
+          name: ";",
+        },
+        {
+          code: ":",
+          name: ":",
+        },
+        {
+          code: "]",
+          name: "]",
+        },
+        {
+          class: "Lshift",
+          code: "Shift",
+          name: "shift",
+        },
+        {
+          code: "z",
           name: "Z",
-          key: "z",
-          code: "KeyZ",
         },
         {
+          code: "x",
           name: "X",
-          key: "x",
-          code: "KeyX",
         },
         {
+          code: "c",
           name: "C",
-          key: "c",
-          code: "KeyC",
         },
         {
+          code: "v",
           name: "V",
-          key: "v",
-          code: "KeyV",
         },
         {
+          code: "b",
           name: "B",
-          key: "b",
-          code: "KeyB",
         },
         {
+          code: "n",
           name: "N",
-          key: "n",
-          code: "KeyN",
         },
         {
+          code: "m",
           name: "M",
-          key: "m",
-          code: "KeyM",
         },
         {
+          code: ",",
           name: ",",
-          key: ",",
-          code: "Comma",
         },
         {
+          code: ".",
           name: ".",
-          key: ".",
-          code: "Period",
         },
         {
+          code: "/",
           name: "/",
-          key: "/",
-          code: "Slash",
         },
         {
-          name: "Shift",
-          key: "Shift",
-          code: "ShiftRight",
+          code: "\\",
+          name: "\\",
         },
         {
-          name: "Ctrl",
-          key: "Control",
-          code: "ControlLeft",
+          code: "Shift",
+          name: "shift",
         },
         {
-          name: "win",
-          key: "Meta",
-          code: "MetaLeft",
+          code: "control",
+          name: "ctrl",
         },
         {
-          name: "Alt",
-          key: "Unidentified",
-          code: "",
+          code: "win",
+          name: "WIN",
         },
         {
+          code: "alt",
+          name: "ALT",
+        },
+        {
+          code: "untitle",
+          name: "無変換",
+        },
+        {
+          class: "space",
+          code: "space",
           name: "",
-          key: "",
-          code: "Space",
         },
         {
-          name: "Alt",
-          key: "Unidentified",
-          code: "",
+          code: "untitle",
+          name: "変換",
         },
         {
-          name: "win",
-          key: "Meta",
-          code: "MetaRight",
+          code: "untitle",
+          name: "カタカナ\nひらがな",
         },
         {
-          name: "",
-          key: "ContextMenu",
-          code: "ContextMenu",
-        },
-        {
-          name: "Ctrl",
-          key: "Control",
-          code: "ControlRight",
+          code: "control",
+          name: "ctrl",
         },
       ],
-      questions: [
-        { ja: "むかしむかし、あるところに", en: "mukasimukasi,arutokoroni" },
-        {
-          ja: "お爺さんとお婆さんが住んでいました。",
-          en: "ojiisantoobaasangasundeimasita.",
-        },
-        {
-          ja: "お爺さんは山狩りに、",
-          en: "ojiisanhayamagarini,",
-        },
-        {
-          ja: "お婆さんは川へ釣りに出かけました。",
-          en: "obaasanhakawaheturinidekakemasita.",
-        },
-        {
-          ja: "今夜はごちそうですね!",
-          en: "konyahagotisoudesune!",
-        },
+      // 問題
+      question: [
+        [
+          {
+            ja: "あいうえお",
+            en: "aiueo",
+          },
+          {
+            ja: "かきくけこ",
+            en: "kakikukeko",
+          },
+          {
+            ja: "さしすせそ",
+            en: "sasisuseso",
+          },
+          {
+            ja: "たちつてと",
+            en: "tatituteto",
+          },
+          {
+            ja: "なにぬねの",
+            en: "naninuneno",
+          },
+          {
+            ja: "はひふへほ",
+            en: "hahihuheho",
+          },
+          {
+            ja: "まみむめも",
+            en: "mamimumemo",
+          },
+          {
+            ja: "やゆよ",
+            en: "yayuyo",
+          },
+          {
+            ja: "らりるれろ",
+            en: "rarirurero",
+          },
+          {
+            ja: "わをん、。",
+            en: "wawon,.",
+          },
+        ],
+        [
+          {
+            ja: "犬も歩けば棒にあたる",
+            en: "inumoarukebabouniataru",
+          },
+          {
+            ja: "論より証拠",
+            en: "ronyorisyouko",
+          },
+          {
+            ja: "花より団子",
+            en: "hanayoridango",
+          },
+          {
+            ja: "憎まれっ子世にはばかる",
+            en: "nikumarekkoyonihabakaru",
+          },
+          {
+            ja: "骨折り損のくたびれ儲け",
+            en: "honeorizonnnokutabiremouke",
+          },
+          {
+            ja: "屁をひって尻つぼめ",
+            en: "hewohittesiritubome",
+          },
+          {
+            ja: "年寄りの冷や水",
+            en: "tosiyorinohiyamizu",
+          },
+          {
+            ja: "ちりも積もれば山となる",
+            en: "tirimotumorebayamatonaru",
+          },
+          {
+            ja: "律儀者の子沢山",
+            en: "ritigimononokodakusann",
+          },
+          {
+            ja: "盗人の昼寝",
+            en: "nusuttonohirune",
+          },
+          {
+            ja: "瑠璃もはりも照らせば光る",
+            en: "rurimoharimoterasebahikaru",
+          },
+          {
+            ja: "老いては子に従え",
+            en: "oitehakonisitagae",
+          },
+          {
+            ja: "割れ鍋にとじ蓋",
+            en: "warenabenitojibuta",
+          },
+          {
+            ja: "かったいのかさ怨み",
+            en: "kattainokasaurami",
+          },
+          {
+            ja: "よしのずいから天井のぞく",
+            en: "yosinozuikaratenjounozoku",
+          },
+          {
+            ja: "旅は道づれ、世は情け",
+            en: "tabihamitizure,yohanasake",
+          },
+          {
+            ja: "良薬、口に苦し",
+            en: "ryouyaku,kutininigasi",
+          },
+          {
+            ja: "総領の甚六",
+            en: "souryounojinroku",
+          },
+          {
+            ja: "月夜に釜を抜かれる",
+            en: "tukiyonikamawonukareru",
+          },
+          {
+            ja: "念には念を入れよ",
+            en: "nennnihanenwoireyo",
+          },
+          {
+            ja: "泣きっ面に蜂",
+            en: "nakitturanihati",
+          },
+          {
+            ja: "楽あれば苦あり",
+            en: "rakuarebakurari",
+          },
+          {
+            ja: "無理が通れば道理が引っこむ",
+            en: "murigatoorebadoorigahikkomu",
+          },
+          {
+            ja: "嘘から出た真",
+            en: "usokaradetamakoto",
+          },
+          {
+            ja: "芋の煮えたも御存じない",
+            en: "imononietamogozonjinai",
+          },
+          {
+            ja: "喉元すぎれば、熱さ忘れる",
+            en: "nodomotosugireba,atusawasureru",
+          },
+          {
+            ja: "鬼に金棒",
+            en: "oninikanabou",
+          },
+          {
+            ja: "臭いものに蓋",
+            en: "kusaimononihuta",
+          },
+          {
+            ja: "安物買いの銭失い",
+            en: "yasumonogainozeniusinai",
+          },
+          {
+            ja: "負けるが勝ち",
+            en: "makerugakati",
+          },
+          {
+            ja: "芸は身を助ける",
+            en: "geihamiwotasukeru",
+          },
+          {
+            ja: "文はやりたし、書く手は持たぬ",
+            en: "humihayaritasi,kakutehamotanu",
+          },
+          {
+            ja: "子は三界の首枷",
+            en: "kohasangainokubikase",
+          },
+          {
+            ja: "得手に帆を揚げる",
+            en: "etenihowoageru",
+          },
+          {
+            ja: "亭主の好きな赤烏帽子",
+            en: "teisyunosukinaakaebosi",
+          },
+          {
+            ja: "頭かくして、尻かくさず",
+            en: "atamakakusite,sirikakusazu",
+          },
+          {
+            ja: "三べん廻って煙草にしょ",
+            en: "sanbenmawattetabakonisyo",
+          },
+          {
+            ja: "聞いて極楽、見て地獄",
+            en: "kiitegokuraku,mitejigoku",
+          },
+          {
+            ja: "油断大敵",
+            en: "yudantaiteki",
+          },
+          {
+            ja: "目の上のたんこぶ",
+            en: "menouenotankobu",
+          },
+          {
+            ja: "身から出た錆",
+            en: "mikaradetasabi",
+          },
+          {
+            ja: "知らぬが仏",
+            en: "siranugahotoke",
+          },
+          {
+            ja: "縁は異なもの味なもの",
+            en: "enhainamonoajinamono",
+          },
+          {
+            ja: "貧乏暇なし",
+            en: "binbouhimanasi",
+          },
+          {
+            ja: "門前の小僧、習わぬ経を読む",
+            en: "monzennnokozou,narawanukyouwoyomu",
+          },
+          {
+            ja: "背に腹は代えられない",
+            en: "seniharahakaerarenai",
+          },
+          {
+            ja: "粋が身を食う",
+            en: "suigamiwokuu",
+          },
+        ],
       ],
-      questionIndex: 0,
-      answerIndex: 0,
+      questionIndex: 1,
+      currentIndex: 0,
       answer: [],
-      sePa: new Audio(require("@/assets/games/sound/pa.mp3")),
+      answerIndex: 0,
+      sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
+      sePinpon: new Audio(require("@/assets/common/sound/pinpon.mp3")),
     };
   },
   mounted() {
@@ -449,33 +599,26 @@ export default {
     onKeyDown(event) {
       this.key = event.key;
       this.code = event.code;
+
       switch (this.key) {
         case "Enter":
-          this.answer = [];
-          this.sePa.play();
+          if (this.showEnter) {
+            this.currentIndex++;
+            this.answer = [];
+            this.answerIndex = 0;
+            this.sePinpon.play();
+            console.log("正解");
+          } else {
+            this.sePa.play();
+            console.log("消去");
+            this.answer = [];
+            this.answerIndex = 0;
+          }
           break;
         default: {
-          // キーが正しければ進む
-          if (
-            this.questions[this.questionIndex].en.split("")[this.answerIndex] ==
-            this.key
-          ) {
+          if (this.key == this.justOne) {
             this.answer.push(this.key);
             this.answerIndex++;
-          }
-
-          // 文章が完成すれば進む
-          if (this.answer.join("") == this.questions[this.questionIndex].en) {
-            console.log("true");
-            let sePinpon = new Audio(
-              require("@/assets/games/sound/pinpon.mp3")
-            );
-            sePinpon.play();
-            sePinpon.addEventListener("ended", () => {
-              this.answer = [];
-              this.answerIndex = 0;
-              this.questionIndex++;
-            });
           }
         }
       }
@@ -484,33 +627,33 @@ export default {
   computed: {
     // キーレイアウト
     keyRow1() {
-      return this.enkeys.slice(0, 14);
+      return this.jakeys.slice(0, 15);
     },
     keyRow2() {
-      return this.enkeys.slice(14, 28);
+      return this.jakeys.slice(15, 42);
     },
     keyRow3() {
-      return this.enkeys.slice(28, 41);
+      return this.jakeys.slice(42, 55);
     },
     keyRow4() {
-      return this.enkeys.slice(41, 53);
-    },
-    keyRow5() {
-      return this.enkeys.slice(53);
+      return this.jakeys.slice(55, 63);
     },
     // 問題
-    curentQuestionJa() {
-      return this.questions[this.questionIndex].ja;
+    curentQuestion() {
+      return this.question[this.questionIndex][this.currentIndex];
     },
-    curentQuestionEn() {
-      return this.questions[this.questionIndex].en;
+    //
+    justOne() {
+      let correct =
+        this.question[this.questionIndex][this.currentIndex].en.split("");
+      if (this.curentQuestion.en.length == this.answer.join("").length) {
+        return "Enter";
+      } else {
+        return correct[this.answerIndex];
+      }
     },
-    // array() {
-    //   return this.questions[this.questionIndex].en.split("");
-    // },
-    just() {
-      let correct = this.questions[this.questionIndex].en.split("");
-      return correct[this.answerIndex];
+    showEnter() {
+      return this.curentQuestion.en.length == this.answer.join("").length;
     },
   },
 };
@@ -518,59 +661,78 @@ export default {
 
 <style scoped>
 .wapper {
-  height: calc(100vh - 200px);
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  padding: 1rem;
 }
+
 main {
-  min-width: 800px;
-  margin: auto;
-  font-size: larger;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
-.question {
-  width: fit-content;
+
+.question-area {
   margin: auto;
   font-size: x-large;
-  font-weight: bold;
 }
+
 .answer {
-  height: 2rem;
+  height: 3rem;
 }
+
 .key {
   margin: 0.1rem;
   padding: 0.5rem;
+  white-space: pre-wrap;
   text-align: center;
   font-weight: bold;
   background-color: white;
   border: solid 1px gray;
   border-radius: 0.5rem;
 }
-.keylayout1 {
-  margin-top: 5rem;
-  display: grid;
-  grid-template-columns: repeat(13, 2fr) 3fr;
+
+.keylayout {
+  max-width: 1000px;
+  margin: auto;
 }
+
+.keylayout1 {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+}
+
 .keylayout2 {
   display: grid;
-  grid-template-columns: 3fr repeat(13, 2fr);
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: 2;
 }
+
 .keylayout3 {
   display: grid;
-  grid-template-columns: 3fr repeat(11, 2fr) 3fr;
+  grid-template-columns: repeat(14, 1fr);
 }
+
 .keylayout4 {
   display: grid;
-  grid-template-columns: 4fr repeat(10, 2fr) 4fr;
+  grid-template-columns: repeat(12, 1fr);
 }
-.keylayout5 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 4fr 1fr 1fr 1fr 1fr;
+
+.keyEnter {
+  grid-area: 1/14/3/14;
 }
+
+.keyLshift {
+  grid-column: 1/3;
+}
+
+.keyspace {
+  grid-column: 5/10;
+}
+
 .hit {
   background-color: gainsboro;
 }
+
 .here {
-  background-color: aquamarine;
+  background-color: rgba(var(--main-color-rgb), 0.5);
 }
 </style>

@@ -1,34 +1,23 @@
 [
   {
-    "id": "typing",
-    "name": "タイピング",
-    "date": "",
-    "description": "",
-    "tag": [],
-    "open": true
+    "id": "TouchTyping",
+    "href": "typing",
+    "name": "タッチタイピング",
+    "tag": ["IT"],
+    "description": "パソコン初心者の壁！ キーボードのレイアウトに慣れる練習をしよう"
   },
   {
-    "id": "whack-a-mole",
-    "name": "もぐらたたき",
-    "date": "",
-    "description": "",
-    "tag": [],
-    "open": false
+    "id": "MultiplicationPractice",
+    "href": "multiplication",
+    "name": "かけ算超入門",
+    "tag": ["算数"],
+    "description": "指折り計算している初心者向け"
   },
   {
-    "id": "neurasthenia",
-    "name": "神経衰弱",
-    "date": "",
-    "description": "",
-    "tag": [],
-    "open": false
-  },
-  {
-    "id": "archeryole",
-    "name": "アーチェリー",
-    "date": "",
-    "description": "",
-    "tag": [],
-    "open": false
+    "id": "BoxCalculation",
+    "href": "typing",
+    "name": "百マス計算",
+    "tag": ["算数"],
+    "description": "簡単な計算こそ基礎基本にして極意なり"
   }
 ]

@@ -8,7 +8,9 @@
           params: { course: course },
         }"
       >
-        <button class="xlarge" @click="reset">&laquo;</button>
+        <button @click="reset">
+          <span class="material-icons md-18">skip_previous</span>
+        </button>
       </router-link>
     </nav>
 
@@ -29,7 +31,8 @@
               :class="isActor ? 'isTrue' : 'isFalse'"
               @click="switchActor"
             >
-              &gt;&#969;&lt;
+              <!-- &gt;&#969;&lt; -->
+              <span class="material-icons md-18">face</span>
             </button>
             <div class="actorName" :class="{ none: !isActor }">
               {{ actorName }}
@@ -42,13 +45,21 @@
               :class="isVoice ? 'isTrue' : 'isFalse'"
               @click="switchVoice"
             >
-              音声&sung;
+              音声<span class="material-icons md-18">music_note</span>
+              <!-- &sung; -->
             </button>
             <button :class="isSkip ? 'isTrue' : 'isFalse'" @click="switchSkip">
-              自動&#9654;
+              自動<span class="material-icons md-18">loop</span>
+              <!-- &#9654; -->
             </button>
-            <button @click="voiceStop">停止&#9632;</button>
-            <button @click="voicePlay">もう一度&orarr;</button>
+            <button @click="voiceStop">
+              停止<span class="material-icons md-18">stop</span>
+              <!-- &#9632; -->
+            </button>
+            <button @click="voicePlay">
+              再生<span class="material-icons md-18">play_arrow</span>
+              <!-- &orarr; -->
+            </button>
           </section>
         </section>
 
@@ -69,7 +80,9 @@
 
     <!-- 右メニュー -->
     <nav class="rightMenu">
-      <button class="xlarge" @click="switchMenu">&equiv;</button>
+      <button @click="switchMenu">
+        <span class="material-icons md-18">menu</span>
+      </button>
       <ul v-show="isMenu">
         <li
           v-for="(slide, index) in scenario"
@@ -278,7 +291,7 @@ export default {
 /* メイン */
 main {
   width: 100%;
-  max-width: 1080px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -318,11 +331,12 @@ main {
 
 /* アクター */
 .actorName {
-  padding: 0.5rem;
+  padding: 0.4rem;
+  font-size: x-large;
+  color: white;
   background-color: rgb(0, 0, 0, 0.8);
   border: solid 1px;
   border-radius: 10px;
-  color: white;
 }
 .actor {
   max-height: 100%;
