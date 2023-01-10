@@ -20,21 +20,24 @@
         </section>
 
         <!-- ヒント -->
-        <section>
+        <section class="hint-area">
           <hr />
-          <button
-            @click="showHint = !showHint"
-            :class="showHint ? 'hintOn' : 'hintOff'"
-          >
-            ヒント
-          </button>
-          <button
-            @click="showcheat = !showcheat"
-            :class="showcheat ? 'hintOn' : 'hintOff'"
-            v-show="showHint"
-          >
-            カンニング
-          </button>
+          <div class="hintbtn">
+            <span
+              @click="showHint = !showHint"
+              :class="showHint ? 'hintOn' : 'hintOff'"
+            >
+              ヒント
+            </span>
+            <span
+              @click="showcheat = !showcheat"
+              :class="showcheat ? 'hintOn' : 'hintOff'"
+              v-show="showHint"
+            >
+              カンニング
+            </span>
+          </div>
+
           <section v-show="showHint">
             <div v-for="yItem in numY" :key="yItem" class="display-box">
               <span v-for="xItem in numX" :key="xItem" class="box-item">
@@ -133,7 +136,7 @@ export default {
       numY: 1,
       answer: [],
       showHint: true,
-      showcheat: true,
+      showcheat: false,
     };
   },
   computed: {},
@@ -207,6 +210,14 @@ export default {
   padding: 2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+.hint-area {
+  max-width: 500px;
+  margin: auto;
+}
+.hintbtn {
+  margin: 1rem 0;
 }
 .title {
   margin: 1rem;
