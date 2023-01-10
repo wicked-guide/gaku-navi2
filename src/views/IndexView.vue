@@ -47,7 +47,7 @@
 
           <!-- {{ games }} -->
           <div v-for="item in games" :key="item.id">
-            <router-link to="/game/typing">
+            <router-link :to="`/game/${item.href}`">
               {{ item.name }}
             </router-link>
           </div>

@@ -41,12 +41,11 @@ const routes = [
     name: "TouchTyping",
     component: () => import("../views/games/TouchTypingView.vue"),
   },
-  // ゲーム
-  // {
-  //   path: "/game/:id",
-  //   name: "game",
-  // component: () => import("../views/games/GameView.vue"),
-  // },
+  {
+    path: "/game/multiplication",
+    name: "MultiplicationPractice",
+    component: () => import("../views/games/MultiplicationPracticeView.vue"),
+  },
   // 以下不要
   {
     path: "/about",
