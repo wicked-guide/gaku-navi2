@@ -17,6 +17,13 @@
           <span :class="{ here: column == 1 }">{{ numY }}</span>
           <span>=</span>
           <span :class="{ here: column == 2 }">{{ answer.join("") }}</span>
+
+          <img
+            src="@/assets/common/img/check.png"
+            alt="check"
+            class="check"
+            v-show="isCorrect"
+          />
         </section>
 
         <!-- ヒント -->
@@ -137,6 +144,7 @@ export default {
       answer: [],
       showHint: true,
       showcheat: false,
+      isCorrect: false,
     };
   },
   computed: {},
@@ -176,25 +184,30 @@ export default {
       }
     },
     onEnter() {
-      switch (this.column) {
-        case 2:
-          if (this.answer.join("") == this.numX * this.numY) {
-            const sePinpon = new Audio(
-              require("@/assets/common/sound/pinpon2.mp3")
-            );
-            sePinpon.play();
-            sePinpon.addEventListener("ended", () => {
-              this.column = 0;
-              this.numX = 1;
-              this.numY = 1;
+      if (!this.isCorrect) {
+        switch (this.column) {
+          // 正解時
+          case 2:
+            if (this.answer.join("") == this.numX * this.numY) {
+              this.isCorrect = true;
+              const sePinpon = new Audio(
+                require("@/assets/common/sound/pinpon2.mp3")
+              );
+              sePinpon.play();
+              sePinpon.addEventListener("ended", () => {
+                this.column = 0;
+                this.numX = 1;
+                this.numY = 1;
+                this.answer = [];
+                this.isCorrect = false;
+              });
+            } else {
+              const sePa = new Audio(require("@/assets/common/sound/pa.mp3"));
+              sePa.play();
               this.answer = [];
-            });
-          } else {
-            const sePa = new Audio(require("@/assets/common/sound/pa.mp3"));
-            sePa.play();
-            this.answer = [];
-          }
-          break;
+            }
+            break;
+        }
       }
     },
   },
@@ -228,9 +241,9 @@ export default {
   max-width: 500px;
   margin: 0 auto;
   text-align: center;
-  font-size: xx-large;
+  font-size: 3rem;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 .display-box {
   max-width: 500px;
@@ -241,9 +254,11 @@ export default {
 .box-item {
   position: relative;
 }
-.apple {
+.apple,
+.check {
   max-width: 100%;
-  max-height: 6vh;
+  max-height: 3rem;
+  margin: auto;
 }
 .keylayout {
   display: grid;
