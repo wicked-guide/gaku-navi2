@@ -223,7 +223,7 @@ export default {
     slideImage() {
       try {
         if (!this.scenario[this.pageIndex].message[this.messageIndex].slide) {
-          return "./common/background/sky_blue.png";
+          return "./common/background/cloud2.png";
         } else {
           return `./${this.course}/${this.id}/img/${
             this.scenario[this.pageIndex].message[this.messageIndex].slide

@@ -29,10 +29,8 @@ export default {
         {
           type: "画像",
           names: [
-            "Canva",
             "icon-rainbow",
             "illust8",
-            "kumono",
             "Topecon Heroes",
             "stable diffusion",
             "イラストパーク",
