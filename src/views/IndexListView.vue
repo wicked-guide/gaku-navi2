@@ -25,9 +25,7 @@
                 params: { course: course, id: chapter.href },
               }"
             >
-              <div>
-                {{ chapter.title }}
-              </div>
+              {{ chapter.title }}
             </router-link>
             <div v-else>
               <span class="making">制作中</span>

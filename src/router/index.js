@@ -41,10 +41,17 @@ const routes = [
     name: "TouchTyping",
     component: () => import("../views/games/TouchTypingView.vue"),
   },
+  // かけ算入門
   {
     path: "/game/multiplication",
     name: "MultiplicationPractice",
     component: () => import("../views/games/MultiplicationPracticeView.vue"),
+  },
+  // 百マス計算
+  {
+    path: "/game/calculation",
+    name: "BoxCalculation",
+    component: () => import("../views/games/BoxCalculationView.vue"),
   },
   // 以下不要
   {

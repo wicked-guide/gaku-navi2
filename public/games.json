@@ -15,8 +15,8 @@
   },
   {
     "id": "BoxCalculation",
-    "href": "typing",
-    "name": "百マス計算",
+    "href": "calculation",
+    "name": "81マス計算",
     "tag": ["算数"],
     "description": "簡単な計算こそ基礎基本にして極意なり"
   }

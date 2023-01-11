@@ -82,7 +82,7 @@
 import HeaderNav from "@/components/HeaderNav.vue";
 
 export default {
-  name: "AboutView",
+  name: "MultiplicationPracticeView",
   components: {
     HeaderNav,
   },
