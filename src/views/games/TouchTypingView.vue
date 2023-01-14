@@ -680,7 +680,7 @@ main {
 
 .key {
   margin: 0.1rem;
-  padding: 0.5rem;
+  padding: 0.2rem;
   white-space: pre-wrap;
   text-align: center;
   font-weight: bold;
@@ -691,11 +691,12 @@ main {
 
 .keylayout {
   max-width: 1000px;
-  margin: auto;
+  margin: 2rem auto;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr 1fr;
 }
 
 .keylayout1 {
-  margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(15, 1fr);
 }

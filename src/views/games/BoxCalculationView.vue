@@ -108,6 +108,8 @@ export default {
       correct: [],
       count: 0,
       answer: [],
+      sePinpon: new Audio(require("@/assets/common/sound/pinpon2.mp3")),
+      sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
     };
   },
   computed: {
@@ -149,16 +151,14 @@ export default {
     },
     onEnter() {
       if (this.answer.join("") == this.correct[this.count].ans) {
-        const sePinpon = new Audio(
-          require("@/assets/common/sound/pinpon2.mp3")
-        );
-        sePinpon.play();
+        this.sePinpon.pause();
+        this.sePinpon.currentTime = 0;
+        this.sePinpon.play();
         this.correct[this.count].jage = true;
         this.answer = [];
         this.count++;
       } else {
-        const sePa = new Audio(require("@/assets/common/sound/pa.mp3"));
-        sePa.play();
+        this.sePa.play();
         this.answer = [];
       }
     },

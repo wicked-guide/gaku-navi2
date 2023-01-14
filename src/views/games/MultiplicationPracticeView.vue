@@ -48,11 +48,7 @@
           <section v-show="showHint">
             <div v-for="yItem in numY" :key="yItem" class="display-box">
               <span v-for="xItem in numX" :key="xItem" class="box-item">
-                <img
-                  src="@/assets/common/img/apple.png"
-                  alt="apple"
-                  class="apple"
-                />
+                <img :src="imgApple" alt="apple" class="apple" />
                 <div v-show="showcheat" class="cheat">
                   {{ numX * (yItem - 1) + xItem }}
                 </div>
@@ -145,6 +141,11 @@ export default {
       showHint: true,
       showcheat: false,
       isCorrect: false,
+      // 素材
+      imgApple: require("@/assets/common/img/apple.png"),
+      imgCheck: require("@/assets/common/img/check.png"),
+      sePinpon: new Audio(require("@/assets/common/sound/pinpon2.mp3")),
+      sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
     };
   },
   computed: {},
@@ -190,11 +191,8 @@ export default {
           case 2:
             if (this.answer.join("") == this.numX * this.numY) {
               this.isCorrect = true;
-              const sePinpon = new Audio(
-                require("@/assets/common/sound/pinpon2.mp3")
-              );
-              sePinpon.play();
-              sePinpon.addEventListener("ended", () => {
+              this.sePinpon.play();
+              this.sePinpon.addEventListener("ended", () => {
                 this.column = 0;
                 this.numX = 1;
                 this.numY = 1;
@@ -202,8 +200,7 @@ export default {
                 this.isCorrect = false;
               });
             } else {
-              const sePa = new Audio(require("@/assets/common/sound/pa.mp3"));
-              sePa.play();
+              this.sePa.play();
               this.answer = [];
             }
             break;
