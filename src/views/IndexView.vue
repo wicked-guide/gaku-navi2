@@ -184,7 +184,6 @@ export default {
 
 /* サブエリア */
 .wapper aside {
-  /* display: none; 作成中のため非表示 */
   width: 200px;
   margin-top: 1rem;
 }

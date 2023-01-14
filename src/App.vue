@@ -6,7 +6,7 @@
 :root {
   --main-color: rgb(96, 186, 192);
   --main-color-rgb: 96, 186, 192;
-  --sub-color: rgb(96, 186, 192);
+  --sub-color: rgb(253, 117, 76);
   --back-color: rgb(255, 252, 240);
 }
 body {
@@ -28,5 +28,14 @@ body {
 
 input {
   caret-color: var(--main-color);
+}
+/* コンポーネント */
+.btn-main {
+  width: fit-content;
+  padding: 0.3rem;
+  color: white;
+  background-color: var(--main-color);
+  border-radius: 0.2rem;
+  user-select: none;
 }
 </style>

@@ -5,14 +5,45 @@
     <router-link to="/game">
       <button class="material-icons md-18">skip_previous</button>
     </router-link>
-    <div class="title">BoxCalculation</div>
-
+    <div class="title">81マス計算</div>
     <section class="layout">
       <!-- 式エリア -->
       <section>
+        <div class="menu">
+          <div class="btn-main" @click="shuffleXY">シャッフル(Esc)</div>
+          <div
+            class="btn-main"
+            @click="
+              isPlus = !isPlus;
+              shuffleXY();
+            "
+          >
+            足し算⇔掛け算(Del)
+          </div>
+        </div>
+
         <!-- 百マス -->
         <section class="display-box">
-          <div class="th">+</div>
+          <div
+            class="type"
+            v-show="isPlus"
+            @click="
+              isPlus = !isPlus;
+              shuffleXY();
+            "
+          >
+            +
+          </div>
+          <div
+            class="type"
+            v-show="!isPlus"
+            @click="
+              isPlus = !isPlus;
+              shuffleXY();
+            "
+          >
+            ×
+          </div>
           <div v-for="x in arrayX" :key="x" class="th">{{ x }}</div>
           <template v-for="(c, index) in correct" :key="c">
             <div v-show="index % 9 == 0" class="th">
@@ -101,8 +132,8 @@ export default {
           name: "Enter",
         },
       ],
+      isPlus: true,
       // 問題
-
       arrayX: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       arrayY: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       correct: [],
@@ -119,23 +150,62 @@ export default {
   },
   async mounted() {
     document.addEventListener("keydown", this.onKeyDown);
-    await this.arrayY.forEach((y, yIndex) => {
-      this.arrayX.forEach((x, xIndex) => {
-        this.correct.push({
-          order: yIndex * 9 + xIndex + 1,
-          ans: y + x,
-          jage: false,
-        });
-      });
-    });
+    await this.shuffleXY();
   },
   methods: {
+    // 数値をランダム化
+    shuffleArray(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let r = Math.floor(Math.random() * (i + 1));
+        let tmp = array[i];
+        array[i] = array[r];
+        array[r] = tmp;
+      }
+      return array;
+    },
+    // 初期化
+    shuffleXY() {
+      this.shuffleArray(this.arrayX);
+      this.shuffleArray(this.arrayY);
+      this.correct = [];
+      this.count = 0;
+      this.answer = [];
+      this.arrayY.forEach((y, yIndex) => {
+        this.arrayX.forEach((x, xIndex) => {
+          if (this.isPlus) {
+            this.correct.push({
+              order: yIndex * 9 + xIndex + 1,
+              ans: y + x,
+              jage: false,
+            });
+          } else {
+            this.correct.push({
+              order: yIndex * 9 + xIndex + 1,
+              ans: y * x,
+              jage: false,
+            });
+          }
+        });
+      });
+      this.sePa.play();
+    },
+
     // キーボード入力の場合
     onKeyDown(event) {
-      if (!isNaN(event.key)) {
-        this.onKeyClick(event.key);
-      } else if (event.key == "Enter") {
-        this.onEnter();
+      switch (event.key) {
+        case isNaN(event.key) || event.key:
+          this.onKeyClick(event.key);
+          break;
+        case "Enter":
+          this.onEnter();
+          break;
+        case "Escape":
+          this.shuffleXY();
+          break;
+        case "Delete":
+          this.isPlus = !this.isPlus;
+          this.shuffleXY();
+          break;
       }
     },
     // 画面のボタン入力の場合
@@ -182,6 +252,10 @@ export default {
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
 }
+.menu {
+  display: flex;
+  justify-content: space-between;
+}
 .display-box {
   margin: auto;
   display: grid;
@@ -189,7 +263,11 @@ export default {
   text-align: center;
   font-size: xx-large;
 }
-
+.display-box .type {
+  color: white;
+  background-color: var(--sub-color);
+  user-select: none;
+}
 .display-box .th {
   color: white;
   background-color: var(--main-color);

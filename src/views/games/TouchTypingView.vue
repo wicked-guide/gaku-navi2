@@ -8,7 +8,7 @@
 
     <main>
       <h3>タッチタイピング</h3>
-
+      {{ key }}
       <!-- 問題 -->
       <section class="question-area">
         <div>{{ curentQuestion.ja }}</div>
