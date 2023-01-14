@@ -1,1 +1,0 @@
-:root{--main-color:#60bac0;--main-color-rgb:96,186,192;--sub-color:#60bac0;--back-color:#fffcf0}body{margin:0;background-color:var(--back-color);caret-color:transparent}#app{font-family:Avenir,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;color:#2c3e50}.none{display:none}input{caret-color:var(--main-color)}
