@@ -18,12 +18,7 @@
           <span>=</span>
           <span :class="{ here: column == 2 }">{{ answer.join("") }}</span>
 
-          <img
-            src="@/assets/common/img/check.png"
-            alt="check"
-            class="check"
-            v-show="isCorrect"
-          />
+          <img :src="imgCheck" alt="check" class="check" v-show="isCorrect" />
         </section>
 
         <!-- ヒント -->
@@ -172,7 +167,6 @@ export default {
             case 0:
               this.numX = Number(key);
               this.column = 1;
-              console.log(this.numX, typeof this.numX);
               break;
             case 1:
               this.numY = Number(key);

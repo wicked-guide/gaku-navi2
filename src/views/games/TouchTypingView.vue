@@ -8,13 +8,27 @@
 
     <main>
       <h3>タッチタイピング</h3>
-      {{ key }}
+      <!-- {{ key }} -->
+      <ul class="menuselect">
+        <li
+          v-for="(item, index) in questionList"
+          :key="index"
+          :class="[questionIndex == index ? 'here' : '']"
+          @click="questionSelect(index)"
+        >
+          {{ item }}
+        </li>
+      </ul>
+
       <!-- 問題 -->
       <section class="question-area">
         <div>{{ curentQuestion.ja }}</div>
         <div>{{ curentQuestion.en }}</div>
         <hr />
-        <div class="answer">{{ answer.join("") }}</div>
+        <div class="answer">
+          {{ answer.join("") }}
+          <img :src="imgCheck" alt="check" class="check" v-show="isCorrect" />
+        </div>
       </section>
       <!-- キーボード -->
       <section class="keylayout">
@@ -390,7 +404,7 @@ export default {
           },
           {
             ja: "わをん、。",
-            en: "wawon,.",
+            en: "wawonn,.",
           },
         ],
         [
@@ -584,10 +598,14 @@ export default {
           },
         ],
       ],
-      questionIndex: 1,
+      questionList: ["五十音", "カルタ"],
+      questionIndex: 0,
       currentIndex: 0,
       answer: [],
       answerIndex: 0,
+      isCorrect: false,
+      // 素材
+      imgCheck: require("@/assets/common/img/check.png"),
       sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
       sePinpon: new Audio(require("@/assets/common/sound/pinpon.mp3")),
     };
@@ -603,14 +621,16 @@ export default {
       switch (this.key) {
         case "Enter":
           if (this.showEnter) {
-            this.currentIndex++;
-            this.answer = [];
-            this.answerIndex = 0;
+            this.isCorrect = true;
             this.sePinpon.play();
-            console.log("正解");
+            setTimeout(() => {
+              this.currentIndex++;
+              this.answer = [];
+              this.answerIndex = 0;
+              this.isCorrect = false;
+            }, 500);
           } else {
             this.sePa.play();
-            console.log("消去");
             this.answer = [];
             this.answerIndex = 0;
           }
@@ -622,6 +642,10 @@ export default {
           }
         }
       }
+    },
+    questionSelect(index) {
+      this.questionIndex = index;
+      this.currentIndex = 0;
     },
   },
   computed: {
@@ -663,21 +687,34 @@ export default {
 .wapper {
   padding: 1rem;
 }
-
-main {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+.menuselect {
+  display: flex;
+}
+.menuselect li {
+  width: fit-content;
+  padding: 0.2rem;
+  list-style: none;
+  cursor: pointer;
+  border: solid 1px rgba(var(--main-color-rgb), 0.5);
+  border-radius: 0.5rem;
 }
 
 .question-area {
+  width: fit-content;
   margin: auto;
   font-size: x-large;
 }
 
 .answer {
   height: 3rem;
+  position: relative;
 }
-
+.check {
+  max-width: 100%;
+  max-height: 2rem;
+  margin: auto;
+  position: absolute;
+}
 .key {
   margin: 0.1rem;
   padding: 0.2rem;
