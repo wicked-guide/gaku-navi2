@@ -13,7 +13,7 @@
         <li
           v-for="(item, index) in questionList"
           :key="index"
-          :class="[questionIndex == index ? 'here' : '']"
+          :class="[questionIndex == index ? 'here' : 'hit']"
           @click="questionSelect(index)"
         >
           {{ item }}
@@ -694,9 +694,9 @@ export default {
   width: fit-content;
   padding: 0.2rem;
   list-style: none;
-  cursor: pointer;
   border: solid 1px rgba(var(--main-color-rgb), 0.5);
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .question-area {
@@ -771,6 +771,6 @@ export default {
 }
 
 .here {
-  background-color: rgba(var(--main-color-rgb), 0.5);
+  background-color: rgba(var(--main-color-rgb), 0.5) !important;
 }
 </style>
