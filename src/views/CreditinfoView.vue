@@ -31,8 +31,8 @@ export default {
           names: [
             "icon-rainbow",
             "illust8",
+            "huggingface",
             "Topecon Heroes",
-            "stable diffusion",
             "イラストパーク",
             "いらすとや",
             "パブリックドメインQ",

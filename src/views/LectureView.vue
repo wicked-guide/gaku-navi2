@@ -357,7 +357,7 @@ main {
 }
 
 .messageArea .messagewindow .message {
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   width: 100%;
   overflow-y: auto;
 }
@@ -424,7 +424,7 @@ nav ul li {
 }
 
 /* レスポンシブ */
-@media (max-width: 800px) {
+@media (max-width: 1025px) {
   .leftMenu,
   .rightMenu {
     padding: 0rem;
@@ -436,6 +436,8 @@ nav ul li {
   nav ul {
     font-size: medium;
   }
+}
+@media (max-width: 800px) {
   .actor {
     display: none;
   }
