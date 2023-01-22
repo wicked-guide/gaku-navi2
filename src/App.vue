@@ -37,6 +37,9 @@ body {
 .myauto {
   margin: auto 0;
 }
+.mtauto {
+  margin-top: auto;
+}
 input {
   caret-color: var(--main-color);
 }
@@ -49,6 +52,18 @@ input {
   color: white;
   background-color: var(--main-color);
   border-radius: 0.2rem;
+  cursor: pointer;
+  user-select: none;
+}
+.btn-off {
+  width: fit-content;
+  padding: 0.3rem;
+  display: flex;
+  align-items: center;
+  color: white;
+  background-color: darkgray;
+  border-radius: 0.2rem;
+  cursor: pointer;
   user-select: none;
 }
 </style>

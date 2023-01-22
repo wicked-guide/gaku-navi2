@@ -21,9 +21,8 @@
             </span>
             <span class="score" v-show="showTime">{{ score }}</span>
           </div>
-          <div class="btn-main">
-            <span class="material-icons" @click="shuffleXY"> shuffle </span
-            >(Esc)
+          <div class="btn-main" @click="shuffleXY">
+            <span class="material-icons"> shuffle </span>(Esc)
           </div>
           <div
             class="btn-main"
@@ -196,6 +195,7 @@ export default {
     // 初期化
     shuffleXY() {
       this.showClear = false;
+      this.isMeasure = false;
       this.startTime = dayjs();
       this.clearTime = "";
       this.score = "00:00";

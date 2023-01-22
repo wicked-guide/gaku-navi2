@@ -9,7 +9,7 @@
 
     <section class="layout">
       <!-- 式エリア -->
-      <section>
+      <section class="formula-area">
         <!-- 式 -->
         <section class="formula">
           <span :class="{ here: column == 0 }">{{ numX }}</span>
@@ -24,16 +24,16 @@
         <!-- ヒント -->
         <section class="hint-area">
           <hr />
-          <div class="hintbtn">
+          <div class="hintbtn flex">
             <span
               @click="showHint = !showHint"
-              :class="showHint ? 'hintOn' : 'hintOff'"
+              :class="showHint ? 'btn-main' : 'btn-off'"
             >
               ヒント
             </span>
             <span
               @click="showcheat = !showcheat"
-              :class="showcheat ? 'hintOn' : 'hintOff'"
+              :class="showcheat ? 'btn-main' : 'btn-off'"
               v-show="showHint"
             >
               カンニング
@@ -210,7 +210,6 @@ export default {
   padding: 1rem;
 }
 .layout {
-  padding: 2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
@@ -219,14 +218,15 @@ export default {
   max-width: 500px;
   margin: auto;
 }
-.hintbtn {
-  margin: 1rem 0;
+.hintbtn span {
+  margin: 0.2rem;
 }
 .title {
   margin: 1rem;
   font-size: larger;
   font-weight: bold;
 }
+
 .formula {
   max-width: 500px;
   margin: 0 auto;
@@ -292,5 +292,19 @@ export default {
   right: 40%;
   font-size: x-large;
   color: white;
+}
+@media (max-width: 500px) {
+  .title {
+    display: none;
+  }
+  .layout {
+    height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .formula-area {
+    margin: 0.5rem 0 auto;
+  }
 }
 </style>
