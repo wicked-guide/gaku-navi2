@@ -603,7 +603,7 @@ export default {
       ],
       questionList: ["五十音", "カルタ"],
       questionIndex: 0,
-      currentIndex: 8,
+      currentIndex: 0,
       answer: [],
       answerIndex: 0,
       isCorrect: false,
