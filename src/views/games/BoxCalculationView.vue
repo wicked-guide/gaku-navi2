@@ -8,9 +8,23 @@
     <div class="title">81マス計算</div>
     <section class="layout">
       <!-- 式エリア -->
-      <section>
+      <section class="formula-area">
         <div class="menu">
-          <div class="btn-main" @click="shuffleXY">シャッフル(Esc)</div>
+          <!-- 時間 -->
+          <div class="time-area flex">
+            <span
+              class="material-icons btn-main myauto"
+              :class="{ offbtn: !showTime }"
+              @click="showTime = !showTime"
+            >
+              update
+            </span>
+            <span class="score" v-show="showTime">{{ score }}</span>
+          </div>
+          <div class="btn-main">
+            <span class="material-icons" @click="shuffleXY"> shuffle </span
+            >(Esc)
+          </div>
           <div
             class="btn-main"
             @click="
@@ -18,7 +32,9 @@
               shuffleXY();
             "
           >
-            足し算⇔掛け算(Del)
+            <span class="material-icons"> add </span>
+            <span class="material-icons"> loop </span>
+            <span class="material-icons"> close </span>(Del)
           </div>
         </div>
 
@@ -55,9 +71,17 @@
             </div>
           </template>
         </section>
+        <div class="good" v-show="showClear">
+          <img :src="imgGood" alt="Good" />
+          <div v-show="showTime">
+            <span class="material-icons"> sports_score </span>
+            {{ clearTime }}
+          </div>
+        </div>
       </section>
       <!-- テンキー -->
       <section>
+        <!-- テンキー -->
         <section class="keylayout">
           <div
             v-for="item in tenkey"
@@ -75,6 +99,7 @@
 
 <script>
 import HeaderNav from "@/components/HeaderNav.vue";
+import * as dayjs from "dayjs";
 
 export default {
   name: "BoxCalculation",
@@ -139,15 +164,20 @@ export default {
       correct: [],
       count: 0,
       answer: [],
+      // 素材
+      imgGood: require("@/assets/common/img/goodjob.png"),
       sePinpon: new Audio(require("@/assets/common/sound/pinpon2.mp3")),
       sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
+      // 時間管理
+      showTime: false,
+      isMeasure: false,
+      showClear: false,
+      startTime: "",
+      clearTime: "",
+      score: "00:00",
     };
   },
-  computed: {
-    test() {
-      return this.correct[1];
-    },
-  },
+  computed: {},
   async mounted() {
     document.addEventListener("keydown", this.onKeyDown);
     await this.shuffleXY();
@@ -165,6 +195,10 @@ export default {
     },
     // 初期化
     shuffleXY() {
+      this.showClear = false;
+      this.startTime = dayjs();
+      this.clearTime = "";
+      this.score = "00:00";
       this.shuffleArray(this.arrayX);
       this.shuffleArray(this.arrayY);
       this.correct = [];
@@ -189,9 +223,13 @@ export default {
       });
       this.sePa.play();
     },
-
     // キーボード入力の場合
     onKeyDown(event) {
+      if (this.showTime && !this.isMeasure) {
+        this.isMeasure = true;
+        this.setStart();
+        this.timeloop();
+      }
       switch (event.key) {
         case isNaN(event.key) || event.key:
           this.onKeyClick(event.key);
@@ -210,6 +248,11 @@ export default {
     },
     // 画面のボタン入力の場合
     onKeyClick(key) {
+      if (this.showTime && !this.isMeasure) {
+        this.isMeasure = true;
+        this.setStart();
+        this.timeloop();
+      }
       switch (key) {
         case "Enter":
           this.onEnter();
@@ -220,17 +263,43 @@ export default {
       }
     },
     onEnter() {
+      // 正解
       if (this.answer.join("") == this.correct[this.count].ans) {
         this.sePinpon.pause();
         this.sePinpon.currentTime = 0;
         this.sePinpon.play();
         this.correct[this.count].jage = true;
         this.answer = [];
-        this.count++;
-      } else {
+        if (this.count < this.correct.length - 1) {
+          this.count++;
+        }
+        // 全問正解
+        else {
+          this.showClear = true;
+          this.clearTime = this.score;
+          this.isMeasure = false;
+        }
+      }
+      // 不正解
+      else {
         this.sePa.play();
         this.answer = [];
       }
+    },
+
+    // 時間計測
+    setStart() {
+      this.startTime = dayjs();
+    },
+
+    timeloop() {
+      setTimeout(() => {
+        if (this.isMeasure) {
+          let now = dayjs();
+          this.score = dayjs(now - this.startTime).format("mm:ss");
+          this.timeloop();
+        }
+      }, 1000);
     },
   },
 };
@@ -238,19 +307,22 @@ export default {
 
 <style scoped>
 .wapper {
-  /* height: 100vh; */
   padding: 1rem;
 }
 .title {
-  margin: 1rem;
+  margin: 0.5rem;
   font-size: larger;
   font-weight: bold;
 }
 .layout {
-  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
+}
+.formula-area {
+  position: relative;
 }
 .menu {
   display: flex;
@@ -282,6 +354,32 @@ export default {
 .notHere {
   background-color: white;
 }
+.offbtn {
+  background-color: darkgray;
+}
+.score {
+  margin: 0 0.3rem;
+  font-size: xx-large;
+}
+.good {
+  position: absolute;
+  max-width: 100%;
+  max-height: 90%;
+  padding: 1rem;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -43%);
+  font-size: 3rem;
+  white-space: nowrap;
+  background-color: white;
+  text-align: center;
+  border-radius: 1rem;
+  border: red solid;
+}
+.good img {
+  max-width: 100%;
+  max-height: 90%;
+}
 .keylayout {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -299,5 +397,36 @@ export default {
 }
 .keyEnter {
   grid-column: 2/4;
+}
+/* レスポンシブ */
+@media (max-width: 500px) {
+  .wapper {
+    padding: 0.5rem;
+  }
+  .title {
+    display: none;
+  }
+  .layout {
+    height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+  }
+  .formula-area {
+    max-height: calc(100vh - 10rem);
+    overflow: auto;
+    margin-bottom: auto;
+    padding-right: 0.3rem;
+  }
+  .display-box .th,
+  .type {
+    position: sticky;
+    top: 0;
+  }
+  .type {
+    z-index: 10;
+  }
+  .key {
+    padding: 0.2rem;
+  }
 }
 </style>

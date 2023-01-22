@@ -25,7 +25,18 @@ body {
 .none {
   display: none;
 }
-
+.flex {
+  display: flex;
+}
+.mauto {
+  margin: auto;
+}
+.mxauto {
+  margin: 0 auto;
+}
+.myauto {
+  margin: auto 0;
+}
 input {
   caret-color: var(--main-color);
 }
@@ -33,6 +44,8 @@ input {
 .btn-main {
   width: fit-content;
   padding: 0.3rem;
+  display: flex;
+  align-items: center;
   color: white;
   background-color: var(--main-color);
   border-radius: 0.2rem;
