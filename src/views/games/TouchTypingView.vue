@@ -629,10 +629,6 @@ export default {
           if (this.showEnter) {
             this.isCorrect = true;
             this.sePinpon.play();
-            console.log(
-              this.currentIndex + 1,
-              this.question[this.questionIndex].length
-            );
             if (
               this.currentIndex + 1 <
               this.question[this.questionIndex].length

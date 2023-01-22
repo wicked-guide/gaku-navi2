@@ -14,6 +14,8 @@ export default {
 <style>
 .navheader {
   padding: 0.5rem;
+  position: sticky;
+  top: 0;
   background-color: var(--main-color);
   display: flex;
   justify-content: space-between;

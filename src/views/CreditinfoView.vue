@@ -31,6 +31,7 @@ export default {
           names: [
             "icon-rainbow",
             "illust8",
+            "イラストAC",
             "huggingface",
             "Topecon Heroes",
             "イラストパーク",
