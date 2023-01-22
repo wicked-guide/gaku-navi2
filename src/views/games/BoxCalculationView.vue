@@ -169,7 +169,7 @@ export default {
       sePinpon: new Audio(require("@/assets/common/sound/pinpon2.mp3")),
       sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
       // 時間管理
-      showTime: false,
+      showTime: true,
       isMeasure: false,
       showClear: false,
       startTime: "",

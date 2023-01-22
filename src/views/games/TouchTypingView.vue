@@ -8,6 +8,7 @@
 
     <main>
       <h3>タッチタイピング</h3>
+      {{ isClear }}
       <!-- {{ key }} -->
       <ul class="menuselect">
         <li
@@ -29,6 +30,8 @@
           {{ answer.join("") }}
           <img :src="imgCheck" alt="check" class="check" v-show="isCorrect" />
         </div>
+        <!-- 全問正解 -->
+        <img :src="imgGood" alt="Good" class="good" v-show="isClear" />
       </section>
       <!-- キーボード -->
       <section class="keylayout">
@@ -600,11 +603,13 @@ export default {
       ],
       questionList: ["五十音", "カルタ"],
       questionIndex: 0,
-      currentIndex: 0,
+      currentIndex: 8,
       answer: [],
       answerIndex: 0,
       isCorrect: false,
+      isClear: false,
       // 素材
+      imgGood: require("@/assets/common/img/goodjob.png"),
       imgCheck: require("@/assets/common/img/check.png"),
       sePa: new Audio(require("@/assets/common/sound/pa.mp3")),
       sePinpon: new Audio(require("@/assets/common/sound/pinpon.mp3")),
@@ -620,16 +625,30 @@ export default {
 
       switch (this.key) {
         case "Enter":
+          // 正解
           if (this.showEnter) {
             this.isCorrect = true;
             this.sePinpon.play();
-            setTimeout(() => {
-              this.currentIndex++;
-              this.answer = [];
-              this.answerIndex = 0;
-              this.isCorrect = false;
-            }, 500);
-          } else {
+            console.log(
+              this.currentIndex + 1,
+              this.question[this.questionIndex].length
+            );
+            if (
+              this.currentIndex + 1 <
+              this.question[this.questionIndex].length
+            ) {
+              setTimeout(() => {
+                this.currentIndex++;
+                this.answer = [];
+                this.answerIndex = 0;
+                this.isCorrect = false;
+              }, 500);
+            } else {
+              this.isClear = true;
+            }
+          }
+          // 不正解
+          else {
             this.sePa.play();
             this.answer = [];
             this.answerIndex = 0;
@@ -646,6 +665,10 @@ export default {
     questionSelect(index) {
       this.questionIndex = index;
       this.currentIndex = 0;
+      this.isClear = false;
+      this.answer = [];
+      this.answerIndex = 0;
+      this.isCorrect = false;
     },
   },
   computed: {
@@ -714,6 +737,25 @@ export default {
   max-height: 2rem;
   margin: auto;
   position: absolute;
+}
+.good {
+  position: absolute;
+  max-width: 100%;
+  max-height: 90%;
+  padding: 1rem;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -43%);
+  font-size: 3rem;
+  white-space: nowrap;
+  background-color: white;
+  text-align: center;
+  border-radius: 1rem;
+  border: red solid;
+}
+.good img {
+  max-width: 100%;
+  max-height: 90%;
 }
 .key {
   margin: 0.1rem;
