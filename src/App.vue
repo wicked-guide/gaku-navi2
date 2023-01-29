@@ -28,6 +28,18 @@ body {
 .flex {
   display: flex;
 }
+.flex-a {
+  display: flex;
+  justify-content: space-around;
+}
+.flex-b {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-c {
+  display: flex;
+  justify-content: center;
+}
 .mauto {
   margin: auto;
 }

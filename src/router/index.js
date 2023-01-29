@@ -53,6 +53,12 @@ const routes = [
     name: "BoxCalculation",
     component: () => import("../views/games/BoxCalculationView.vue"),
   },
+  // スライドパズル
+  {
+    path: "/game/slidepuzzle",
+    name: "SlidePuzzle",
+    component: () => import("../views/games/SlidePuzzleView.vue"),
+  },
   // 以下不要
   {
     path: "/about",

@@ -15,7 +15,7 @@
               {{ tag }}
             </span>
           </section>
-          <div>{{ item.description }}</div>
+          <div class="description">{{ item.description }}</div>
         </router-link>
       </li>
     </ul>
@@ -92,5 +92,9 @@ main {
   background-color: var(--main-color);
   color: white;
   border-radius: 5px;
+}
+
+.card .description {
+  white-space: break-spaces;
 }
 </style>

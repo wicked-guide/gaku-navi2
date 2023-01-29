@@ -19,5 +19,12 @@
     "name": "81マス計算",
     "tag": ["算数"],
     "description": "簡単な計算こそ基礎基本にして極意なり"
+  },
+  {
+    "id": "SlidePuzzle",
+    "href": "slidepuzzle",
+    "name": "スライドパズル",
+    "tag": ["パズル", "プログラミング"],
+    "description": "プログラミングの練習問題\n制作は簡単、クリアは難しい"
   }
 ]
