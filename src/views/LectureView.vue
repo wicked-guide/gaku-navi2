@@ -443,6 +443,28 @@ nav ul li {
   }
 }
 
+@media (max-width: 500px) {
+  .wapper {
+    display: grid;
+    grid-template:
+      "leftMenu rightMenu" auto
+      "main main" 1fr;
+  }
+  .leftMenu {
+    grid-area: leftMenu;
+  }
+  .rightMenu {
+    grid-area: rightMenu;
+    margin-left: auto;
+  }
+  main {
+    grid-area: main;
+  }
+  .messageMenu {
+    display: unset;
+  }
+}
+
 @media (max-height: 500px) {
   .slideArea .slideImg {
     max-height: calc(100vh - 135px);
