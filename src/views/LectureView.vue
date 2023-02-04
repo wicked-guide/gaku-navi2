@@ -305,7 +305,7 @@ main {
 /* スライド */
 .slideArea .slideImg {
   max-width: 100%;
-  max-height: calc(100vh - 225px);
+  max-height: calc(100vh - 230px);
   display: block;
   margin: auto;
 }
