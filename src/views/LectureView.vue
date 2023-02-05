@@ -312,7 +312,7 @@ main {
 
 /* メッセージエリア */
 .messageArea {
-  margin: auto 0 1rem;
+  margin: auto 0 0.5rem;
   white-space: pre-line;
 }
 
