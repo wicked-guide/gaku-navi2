@@ -24,14 +24,7 @@
     "id": "SlidePuzzle",
     "href": "slidepuzzle",
     "name": "スライドパズル",
-    "tag": ["プログラミング", "パズル"],
+    "tag": ["パズル", "プログラミング"],
     "description": "プログラミングの練習問題\n制作は簡単、クリアは難しい"
-  },
-  {
-    "id": "JumpAvoidance",
-    "href": "jump_01",
-    "name": "ジャンプ回避",
-    "tag": ["プログラミング", "アクション"],
-    "description": "プログラミングの練習問題"
   }
 ]

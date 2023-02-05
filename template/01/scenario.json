@@ -1,28 +1,21 @@
 [
   {
     "title": "初めから",
-    "slide": "01.png",
+
     "message": [
       {
+        "slide": "01.png",
         "actor": "春日部つむぎ",
         "actorImg": "Tsumugi-01.png",
         "text": "ここをクリックしてね♪",
         "voice": ""
       },
       {
+        "slide": "01.png",
         "actor": "アダム・スミス",
         "actorImg": "Aadam_Smith.png",
         "text": "はーい皆さん、こんにちは\nいつも笑顔でみんなの味方、持留ですはーい皆さん、こんにちは\nいつも笑顔でみんなの味方、持留ですはーい皆さん、こんにちは\nいつも笑顔でみんなの味方、持留です",
         "voice": "001_はーい皆さん、こん.mp3"
-      }
-    ]
-  },
-  {
-    "title": "クレジット",
-    "slide": "01.png",
-    "message": [
-      {
-        "text": "END"
       }
     ]
   }
