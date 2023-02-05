@@ -8,7 +8,6 @@
 
     <main>
       <h3>タッチタイピング</h3>
-      {{ isClear }}
       <!-- {{ key }} -->
       <ul class="menuselect">
         <li

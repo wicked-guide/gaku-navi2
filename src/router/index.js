@@ -59,6 +59,12 @@ const routes = [
     name: "SlidePuzzle",
     component: () => import("../views/games/SlidePuzzleView.vue"),
   },
+  // P5
+  {
+    path: "/game/p5",
+    name: "p5View",
+    component: () => import("../views/games/p5View.vue"),
+  },
   // 以下不要
   {
     path: "/about",
