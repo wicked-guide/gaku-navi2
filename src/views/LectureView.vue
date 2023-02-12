@@ -305,7 +305,7 @@ main {
 /* スライド */
 .slideArea .slideImg {
   max-width: 100%;
-  max-height: calc(100vh - 230px);
+  max-height: calc(100vh - 16rem);
   display: block;
   margin: auto;
 }
@@ -347,19 +347,20 @@ main {
 /* メッセージウィンドウ */
 .messageArea .messagewindow {
   box-sizing: border-box;
-  height: 176px;
+  height: 12rem;
   background-color: rgb(0, 0, 0, 0.8);
   border-radius: 10px;
   display: flex;
   color: white;
-  font-size: x-large;
+  font-size: 1.8rem;
   cursor: pointer;
 }
 
 .messageArea .messagewindow .message {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
   width: 100%;
   overflow-y: auto;
+  font-size: xx-large;
 }
 
 .messageArea .messagewindow .message::after {

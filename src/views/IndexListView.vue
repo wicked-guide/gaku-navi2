@@ -58,7 +58,7 @@ export default {
       .get(url)
       .then((response) => (this.contentIndex = response.data))
       .catch((error) => {
-        console.log(error);
+        console.log("制作中です", error);
         this.contentIndex = [{ part: "制作中" }];
       });
   },
