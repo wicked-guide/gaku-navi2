@@ -360,7 +360,7 @@ main {
   padding: 0.5rem 1rem;
   width: 100%;
   overflow-y: auto;
-  font-size: xx-large;
+  font-size: 1.8rem;
 }
 
 .messageArea .messagewindow .message::after {
