@@ -18,7 +18,12 @@
     <main>
       <!-- スライドエリア -->
       <section class="slideArea">
-        <img :src="slideImage" class="slideImg" alt="slide" />
+        <img
+          :src="slideImage"
+          class="slideImg"
+          :class="isText ? 'texton' : 'textoff'"
+          alt="slide"
+        />
       </section>
 
       <!-- メッセージエリア -->
@@ -40,31 +45,54 @@
           </section>
 
           <!-- 操作ボタン -->
-          <section>
+          <section class="flex">
+            <button
+              :class="isText ? 'isTrue' : 'isFalse'"
+              @click="isText = !isText"
+            >
+              <!-- 字幕 -->
+              <span class="material-icons md-18">textsms</span>
+              <!-- &sung; -->
+            </button>
             <button
               :class="isVoice ? 'isTrue' : 'isFalse'"
               @click="switchVoice"
             >
-              音声<span class="material-icons md-18">music_note</span>
+              <!-- 音声 -->
+              <span class="material-icons md-18">music_note</span>
               <!-- &sung; -->
             </button>
             <button :class="isSkip ? 'isTrue' : 'isFalse'" @click="switchSkip">
-              自動<span class="material-icons md-18">loop</span>
+              <!-- 自動 -->
+              <span class="material-icons md-18">loop</span>
               <!-- &#9654; -->
             </button>
             <button @click="voiceStop">
-              停止<span class="material-icons md-18">stop</span>
+              <!-- 停止 -->
+              <span class="material-icons md-18">stop</span>
               <!-- &#9632; -->
             </button>
             <button @click="voicePlay">
-              再生<span class="material-icons md-18">play_arrow</span>
+              <!-- 再生 -->
+              <span class="material-icons md-18">play_arrow</span>
               <!-- &orarr; -->
             </button>
+            <div class="voiceSpeed">
+              <span class="material-icons md-18">speed</span>
+              <input
+                type="range"
+                min="0.5"
+                max="2"
+                step="0.1"
+                v-model="voiceSpeed"
+              />
+              <div>{{ voiceSpeed }}</div>
+            </div>
           </section>
         </section>
 
         <!-- メッセージウィンドウ -->
-        <section class="messagewindow" @click="next">
+        <section class="messagewindow" v-show="isText" @click="next">
           <!-- アクター -->
           <section v-show="isActor">
             <img :src="actorImage" class="actor" alt="actor" />
@@ -108,6 +136,7 @@ export default {
       id: this.$route.params.id, // パスパラメータ：ID
       scenario: [], // シナリオ
       // 表示制御
+      isText: true, // 字幕表示
       isActor: true, // キャラ表示
       isMenu: true, // もくじ表示
       isVoice: true, // 音声再生
@@ -116,6 +145,7 @@ export default {
       pageIndex: 0, // スライドの現在地
       messageIndex: 0, // メッセージの現在地
       messageVoice: new Audio(""), //表示メッセージ音声
+      voiceSpeed: 1, // 再生速度
     };
   },
   mounted() {
@@ -196,6 +226,7 @@ export default {
         this.messageVoice = new Audio(
           "./" + this.course + "/" + this.id + "/voice/" + voice
         );
+        this.messageVoice.playbackRate = this.voiceSpeed;
         this.messageVoice.play();
         // ボイス終了⇒オートスキップ
         this.messageVoice.addEventListener("ended", () => {
@@ -305,9 +336,15 @@ main {
 /* スライド */
 .slideArea .slideImg {
   max-width: 100%;
-  max-height: calc(100vh - 16rem);
+
   display: block;
   margin: auto;
+}
+.texton {
+  max-height: calc(100vh - 16rem);
+}
+.textoff {
+  max-height: calc(100vh - 4rem);
 }
 
 /* メッセージエリア */
@@ -327,6 +364,19 @@ main {
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+}
+.voiceSpeed {
+  display: flex;
+  align-items: center;
+  background-color: rgba(240, 240, 240, 0.5);
+  border-radius: 0.5rem;
+}
+.voiceSpeed input {
+  width: 3rem;
+  accent-color: var(--main-color);
+}
+.voiceSpeed div {
+  width: 2rem;
 }
 
 /* アクター */
