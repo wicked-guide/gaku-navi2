@@ -47,7 +47,7 @@
           <!-- 操作ボタン -->
           <section class="flex">
             <button
-              :class="isText ? 'isTrue' : 'isFalse'"
+              :class="[isText ? 'isTrue' : 'isFalse', 'textbtn']"
               @click="isText = !isText"
             >
               <!-- 字幕 -->
@@ -222,7 +222,11 @@ export default {
       // ボイスの有無を判断してセット
       let voice =
         this.scenario[this.pageIndex].message[this.messageIndex].voice;
-      if (voice) {
+      // ボイスが無い時は進む
+      if (!voice) {
+        this.messageIndex++;
+        this.voicePlay();
+      } else {
         this.messageVoice = new Audio(
           "./" + this.course + "/" + this.id + "/voice/" + voice
         );
@@ -518,11 +522,11 @@ nav ul li {
 
 @media (max-height: 500px) {
   .slideArea .slideImg {
-    max-height: calc(100vh - 135px);
+    max-height: calc(100vh - 3rem);
   }
-  .messageArea .messagewindow {
-    height: 90px;
-    font-size: unset;
+  .messageArea .messagewindow,
+  .textbtn {
+    display: none;
   }
   .messageMenu button {
     padding: 0 0.5rem;
