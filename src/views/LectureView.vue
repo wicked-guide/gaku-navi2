@@ -315,14 +315,37 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-image: url("@/assets/common/background/cloud2.png");
+  background-image: url("@/assets/common/background/kumoset.png"),
+    url("@/assets/common/background/kumoset2.png");
   background-size: cover;
-  background-position: center;
+  background-color: #bae6ff;
+  background-repeat: repeat;
+  background-size: 50% 55vh, 50% 40vh;
+  animation-name: drifting-cloud;
+  animation-duration: 60s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto;
 }
-
+@keyframes drifting-cloud {
+  0% {
+    background-position: 0 0, 0 0;
+  }
+  25% {
+    background-position: 50% 8%, 25% -5%;
+  }
+  50% {
+    background-position: 100% 10%, 50% -7%;
+  }
+  75% {
+    background-position: 150% 3%, 75% -2%;
+  }
+  100% {
+    background-position: 200% 0, 100% 0;
+  }
+}
 /* メイン */
 main {
   width: 100%;
@@ -448,7 +471,7 @@ nav ul {
   width: max-content;
   max-height: 90vh;
   overflow: auto;
-  background: whitesmoke;
+  background-color: rgba(240, 240, 240, 0.8);
   padding: 0.5rem;
   border-radius: 0 0 10px 10px;
   box-shadow: 2px 2px 4px;
@@ -465,9 +488,11 @@ nav ul li {
   border-radius: 5px;
   padding: 0 0.2rem;
   cursor: pointer;
-  border-bottom: solid gainsboro;
+  border-bottom: 2px solid gainsboro;
 }
-
+nav ul li:hover {
+  background-color: cornsilk;
+}
 /* アクティブ背景 */
 .isTrue {
   background: aquamarine;
