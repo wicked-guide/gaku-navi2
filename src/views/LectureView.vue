@@ -321,29 +321,27 @@ export default {
   background-color: #bae6ff;
   background-repeat: repeat;
   background-size: 50% 55vh, 50% 40vh;
-  animation-name: drifting-cloud;
-  animation-duration: 60s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  animation: drifting linear 60s infinite, fuwafuwa ease 20s infinite;
   position: relative;
   display: grid;
   grid-template-columns: auto 1fr auto;
 }
-@keyframes drifting-cloud {
+
+@keyframes drifting {
   0% {
-    background-position: 0 0, 0 0;
-  }
-  25% {
-    background-position: 50% 8%, 25% -5%;
-  }
-  50% {
-    background-position: 100% 10%, 50% -7%;
-  }
-  75% {
-    background-position: 150% 3%, 75% -2%;
+    background-position-x: 0, 0;
   }
   100% {
-    background-position: 200% 0, 100% 0;
+    background-position-x: 200%, 100%;
+  }
+}
+@keyframes fuwafuwa {
+  0%,
+  100% {
+    background-position-y: 0, 0;
+  }
+  50% {
+    background-position-y: 10%, -5%;
   }
 }
 /* メイン */
@@ -491,11 +489,13 @@ nav ul li {
   border-bottom: 2px solid gainsboro;
 }
 nav ul li:hover {
-  background-color: cornsilk;
+  color: black;
+  background-color: #fffcf0;
 }
 /* アクティブ背景 */
 .isTrue {
-  background: aquamarine;
+  color: white;
+  background: #60bac0;
 }
 
 .isFalse {
