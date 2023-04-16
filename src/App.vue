@@ -8,8 +8,13 @@
   --main-color-rgb: 96, 186, 192;
   --sub-color: rgb(253, 117, 76);
   --back-color: rgb(255, 252, 240);
+  --darka: #000000aa;
+  --dark7: #00000077;
+  --disable: #7e7e7e77;
 }
 body {
+  height: 100vh;
+  overflow: hidden;
   margin: 0;
   background-color: var(--back-color);
   caret-color: transparent;
@@ -21,9 +26,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
+a {
+  color: unset;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
 .none {
   display: none;
+}
+.overflow {
+  overflow: auto;
 }
 .flex {
   display: flex;
@@ -39,6 +53,10 @@ body {
 .flex-c {
   display: flex;
   justify-content: center;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }
 .mauto {
   margin: auto;

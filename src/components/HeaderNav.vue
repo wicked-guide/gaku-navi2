@@ -2,7 +2,6 @@
   <nav class="navheader">
     <router-link to="/">がくなび</router-link>
   </nav>
-  <router-view />
 </template>
 
 <script>
@@ -17,6 +16,7 @@ export default {
   position: sticky;
   top: 0;
   background-color: var(--main-color);
+  /* background-color: var(--dark7); */
   display: flex;
   justify-content: space-between;
 }
