@@ -2,19 +2,19 @@
   {
     "course": "jh_mathematics",
     "name": "ザックリ中学数学",
-    "date": "2022/11/06",
+    "date": "2022/11/06~",
     "tag": ["中学", "数学"],
     "open": true
   },
   {
     "course": "jh_economy",
     "name": "中学生に学んで欲しい経済入門",
-    "date": "2023/1/12",
+    "date": "2023/1/12~",
     "tag": ["中学", "経済学"],
     "open": false
   },
   {
-    "course": "beginner_programming",
+    "course": "failure_programming",
     "name": "何度も挫折するプログラミング",
     "date": "制作中",
     "tag": ["プログラミング"],
