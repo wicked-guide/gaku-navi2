@@ -87,6 +87,11 @@ export default {
 .contentIndex {
   max-height: calc(100vh - 120px);
   overflow: auto;
+  padding: 0.5rem;
+  color: white;
+  font-size: larger;
+  background-color: var(--darka);
+  border-radius: 0.5rem;
 }
 
 .contentIndex::-webkit-scrollbar {
@@ -112,8 +117,9 @@ export default {
 }
 
 .contentIndex ol li a {
-  color: black;
+  /* color: black; */
   text-decoration: auto;
+  display: block;
 }
 
 .contentIndex ol li a:hover {
@@ -123,8 +129,9 @@ export default {
 }
 
 .making {
-  background: lightgray;
   padding: 0 0.5rem;
-  border-radius: 5px;
+  color: darkgray;
+  background: var(--disable);
+  border-radius: 0.5rem;
 }
 </style>

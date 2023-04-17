@@ -16,7 +16,13 @@ body {
   height: 100vh;
   overflow: hidden;
   margin: 0;
-  background-color: var(--back-color);
+  /* background-color: var(--back-color); */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("@/assets/common/background/school.jpg");
+  background-position: center;
+  background-size: cover;
   caret-color: transparent;
 }
 
@@ -26,6 +32,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
+.logo {
+  padding: 0.5rem 1rem;
+  font-size: xx-large;
+  font-weight: bold;
+  color: white;
+}
+
 a {
   color: unset;
   text-decoration: none;

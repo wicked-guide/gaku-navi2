@@ -1,8 +1,7 @@
 <template>
   <section class="wapper">
-    <!-- ロゴ -->
-    <router-link to="/" class="logo">がくなび</router-link>
-
+    <!-- <router-link to="/" class="logo">がくなび</router-link> -->
+    <HeaderNav />
     <section class="materials">
       <b>お借りした素材</b>
       <div v-for="(item, index) in credit" :key="index">
@@ -16,13 +15,13 @@
 </template>
 
 <script>
-// import HeaderNav from "@/components/HeaderNav.vue";
+import HeaderNav from "@/components/HeaderNav.vue";
 
 export default {
   name: "CreditinfoView",
-  // components: {
-  //   HeaderNav,
-  // },
+  components: {
+    HeaderNav,
+  },
   data() {
     return {
       credit: [
@@ -52,15 +51,9 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: url("@/assets/common/background/school.jpg");
+  /* background-image: url("@/assets/common/background/school.jpg");
   background-position: center;
-  background-size: cover;
-}
-.logo {
-  padding: 0.5rem 1rem;
-  font-size: xx-large;
-  font-weight: bold;
-  color: white;
+  background-size: cover; */
 }
 
 .materials {

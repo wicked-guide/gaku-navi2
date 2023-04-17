@@ -128,9 +128,9 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: url("@/assets/common/background/school.jpg");
+  /* background-image: url("@/assets/common/background/school.jpg");
   background-position: center;
-  background-size: cover;
+  background-size: cover; */
 }
 
 /* レイアウト */
@@ -153,6 +153,7 @@ header {
 /* メインエリア */
 main {
   margin: 0 1rem 1rem;
+  flex: 1;
 }
 .grid {
   display: grid;
@@ -177,6 +178,7 @@ main {
 
 .card:hover {
   box-shadow: 3px 3px 5px;
+  background: #fff3bb;
 }
 
 .card img {
