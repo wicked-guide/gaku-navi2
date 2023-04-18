@@ -4,12 +4,12 @@
 
 <style>
 :root {
-  --main-color: rgb(96, 186, 192);
-  --main-color-rgb: 96, 186, 192;
+  --main-color: #39666c;
+  --main-color-a: #39666c55;
   --sub-color: rgb(253, 117, 76);
   --back-color: rgb(255, 252, 240);
-  --darka: #000000aa;
-  --dark7: #00000077;
+  --back-color-a: #00000077;
+  --dark: #000000aa;
   --disable: #7e7e7e77;
 }
 body {
@@ -50,6 +50,9 @@ a:hover {
 .none {
   display: none;
 }
+.w100 {
+  width: 100%;
+}
 .overflow {
   overflow: auto;
 }
@@ -83,6 +86,9 @@ a:hover {
 }
 .mtauto {
   margin-top: auto;
+}
+.mlauto {
+  margin-left: auto;
 }
 input {
   caret-color: var(--main-color);

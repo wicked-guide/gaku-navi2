@@ -90,7 +90,7 @@ export default {
   padding: 0.5rem;
   color: white;
   font-size: larger;
-  background-color: var(--darka);
+  background-color: var(--dark);
   border-radius: 0.5rem;
 }
 
@@ -117,15 +117,15 @@ export default {
 }
 
 .contentIndex ol li a {
-  /* color: black; */
+  padding: 0 0.5rem;
   text-decoration: auto;
   display: block;
 }
 
 .contentIndex ol li a:hover {
   display: block;
-  background-color: var(--main-color);
-  color: white;
+  color: black;
+  background-color: white;
 }
 
 .making {

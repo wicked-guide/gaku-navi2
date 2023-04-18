@@ -178,7 +178,7 @@ main {
 
 .card:hover {
   box-shadow: 3px 3px 5px;
-  background: #fff3bb;
+  background: #ffd7c3;
 }
 
 .card img {
@@ -215,7 +215,7 @@ aside {
   color: white;
   white-space: nowrap;
 
-  background-color: var(--dark7);
+  background-color: var(--dark);
   border-radius: 0.5rem;
 }
 /* フッター */

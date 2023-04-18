@@ -51,9 +51,6 @@ export default {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  /* background-image: url("@/assets/common/background/school.jpg");
-  background-position: center;
-  background-size: cover; */
 }
 
 .materials {
@@ -62,7 +59,7 @@ export default {
   padding: 2rem;
   font-size: x-large;
   color: white;
-  background-color: var(--dark7);
+  background-color: var(--dark);
   border-radius: 1rem;
 }
 

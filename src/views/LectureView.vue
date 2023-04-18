@@ -1,127 +1,162 @@
 <template>
-  <section class="wapper">
-    <!-- 左メニュー -->
-    <nav class="leftMenu">
-      <router-link
-        :to="{
-          name: 'IndexList',
-          params: { course: course },
-        }"
-      >
-        <button @click="reset">
-          <span class="material-icons md-18">skip_previous</span>
-        </button>
-      </router-link>
-    </nav>
+  <section class="gridlayout">
+    <!-- もくじ -->
+    <section class="coursearea">
+      <div>
+        <router-link to="/">
+          <button class="btn" @click="reset">
+            <img src="../assets/common/img/left.svg" alt="戻る" class="icon" />
+          </button>
+        </router-link>
+      </div>
 
-    <!-- メイン -->
-    <main>
-      <!-- スライドエリア -->
-      <section class="slideArea">
-        <img
-          :src="slideImage"
-          class="slideImg"
-          :class="isText ? 'texton' : 'textoff'"
-          alt="slide"
-        />
-      </section>
-
-      <!-- メッセージエリア -->
-      <section class="messageArea">
-        <!-- アクター名＆操作ボタン -->
-        <section class="messageMenu">
-          <!-- アクター名 -->
-          <section style="display: flex">
-            <button
-              :class="isActor ? 'isTrue' : 'isFalse'"
-              @click="switchActor"
-            >
-              <!-- &gt;&#969;&lt; -->
-              <span class="material-icons md-18">face</span>
-            </button>
-            <div class="actorName" :class="{ none: !isActor }">
-              {{ actorName }}
-            </div>
-          </section>
-
-          <!-- 操作ボタン -->
-          <section class="flex">
-            <button
-              :class="[isText ? 'isTrue' : 'isFalse', 'textbtn']"
-              @click="isText = !isText"
-            >
-              <!-- 字幕 -->
-              <span class="material-icons md-18">textsms</span>
-              <!-- &sung; -->
-            </button>
-            <button
-              :class="isVoice ? 'isTrue' : 'isFalse'"
-              @click="switchVoice"
-            >
-              <!-- 音声 -->
-              <span class="material-icons md-18">music_note</span>
-              <!-- &sung; -->
-            </button>
-            <button :class="isSkip ? 'isTrue' : 'isFalse'" @click="switchSkip">
-              <!-- 自動 -->
-              <span class="material-icons md-18">loop</span>
-              <!-- &#9654; -->
-            </button>
-            <button @click="voiceStop">
-              <!-- 停止 -->
-              <span class="material-icons md-18">stop</span>
-              <!-- &#9632; -->
-            </button>
-            <button @click="voicePlay">
-              <!-- 再生 -->
-              <span class="material-icons md-18">play_arrow</span>
-              <!-- &orarr; -->
-            </button>
-            <div class="voiceSpeed">
-              <span class="material-icons md-18">speed</span>
-              <input
-                type="range"
-                min="0.5"
-                max="2"
-                step="0.1"
-                v-model="voiceSpeed"
-              />
-              <div>{{ voiceSpeed }}</div>
-            </div>
-          </section>
-        </section>
-
-        <!-- メッセージウィンドウ -->
-        <section class="messagewindow" v-show="isText" @click="next">
-          <!-- アクター -->
-          <section v-show="isActor">
-            <img :src="actorImage" class="actor" alt="actor" />
-          </section>
-
-          <!-- メッセージ -->
-          <section class="message">
-            {{ messageText }}
-          </section>
-        </section>
-      </section>
-    </main>
-
-    <!-- 右メニュー -->
-    <nav class="rightMenu">
-      <button @click="switchMenu">
-        <span class="material-icons md-18">menu</span>
+      <button class="btn" @click="isCourseIndex = !isCourseIndex">
+        <!-- &equiv; -->
+        <img src="../assets/common/img/menu.svg" alt="メニュー" class="icon" />
       </button>
-      <ul v-show="isMenu">
+
+      <div class="courseIndex" v-show="isCourseIndex">
+        <template v-for="item in courseIndex" :key="item">
+          <div class="part">{{ item.part }}</div>
+          <ul>
+            <li
+              v-for="item in item.chapter"
+              :key="item"
+              :class="[{ istrue: item.href == id }]"
+              v-show="item.href != '#'"
+            >
+              <router-link
+                :to="{
+                  name: 'lecture',
+                  params: { course: course, id: item.href },
+                }"
+                :class="[{ istrue: item.href == id }]"
+                @click="courseJump(item.href)"
+              >
+                {{ item.title }}
+              </router-link>
+            </li>
+          </ul>
+        </template>
+      </div>
+    </section>
+
+    <!-- スライド -->
+    <section class="slide">
+      <img :src="slideImage" alt="slide" />
+    </section>
+
+    <!-- メッセージ -->
+    <section class="message flex">
+      <!-- アクター -->
+      <img
+        :src="actorImage"
+        alt="アクター"
+        v-show="isActor && isText"
+        class="actorimg"
+      />
+
+      <section class="flex-col w100">
+        <!-- 操作メニュー -->
+        <section class="flex">
+          <button
+            :class="['btn', 'nowrap', isActor ? 'istrue' : 'isfalse']"
+            @click="isActor = !isActor"
+          >
+            ・ω・
+            <!-- <span class="material-icons md-18">face</span> -->
+          </button>
+          <span class="actorname">{{ actorName }}</span>
+          <!-- <button
+            :class="['btn', 'mlauto', isText ? 'istrue' : 'isfalse']"
+            @click="isText = !isText"
+          >
+            字
+          </button> -->
+          <button
+            :class="['btn', 'mlauto', isVoice ? 'istrue' : 'isfalse']"
+            @click="
+              isVoice = !isVoice;
+              voiceStop();
+            "
+          >
+            <!-- &#9835; -->
+            <img
+              src="../assets/common/img/voice.svg"
+              alt="メーター"
+              class="icon"
+            />
+          </button>
+          <button
+            :class="['btn', isSkip ? 'istrue' : 'isfalse']"
+            @click="isSkip = !isSkip"
+          >
+            <!-- &#8635; -->
+            <img
+              src="../assets/common/img/repeat.svg"
+              alt="メーター"
+              class="icon"
+            />
+          </button>
+          <button :class="['btn']" @click="voiceStop">
+            <!-- &#9632; -->
+            <img
+              src="../assets/common/img/stop.svg"
+              alt="メーター"
+              class="icon"
+            />
+          </button>
+          <button :class="['btn']" @click="voicePlay">
+            <!-- &#9654; -->
+            <img
+              src="../assets/common/img/play.svg"
+              alt="メーター"
+              class="icon"
+            />
+          </button>
+          <div class="voiceSpeed">
+            <img
+              src="../assets/common/img/meter.svg"
+              alt="メーター"
+              class="icon"
+            />
+            <input
+              type="range"
+              min="0.5"
+              max="2"
+              step="0.1"
+              v-model="voiceSpeed"
+            />
+            <div>
+              {{ voiceSpeed }}
+            </div>
+          </div>
+        </section>
+
+        <!-- 字幕 -->
+        <div class="messageWindow" @click="next" v-show="isText">
+          {{ messageText }}
+        </div>
+      </section>
+    </section>
+
+    <!-- ページ -->
+    <section class="pagearea">
+      <button class="btn" @click="isPageIndex = !isPageIndex">
+        <!-- &equiv; -->
+        <img src="../assets/common/img/menu.svg" alt="メニュー" class="icon" />
+      </button>
+      <ul class="pageIndex" v-show="isPageIndex">
         <li
-          v-for="(slide, index) in scenario"
+          v-for="(item, index) in scenario"
           :key="index"
-          :class="{ isTrue: index == pageIndex }"
+          :class="{ istrue: index == pageIndex }"
           @click="pageJump(index)"
         >
-          {{ ("00" + (index + 1)).slice(-2) }}：{{ slide.title }}
+          {{ ("00" + (index + 1)).slice(-2) }}：{{ item.title }}
         </li>
       </ul>
-    </nav>
+    </section>
   </section>
 </template>
 
@@ -132,15 +167,18 @@ export default {
   data() {
     return {
       // シナリオデータ
-      course: this.$route.params.course, // パスパラメータ: コース
-      id: this.$route.params.id, // パスパラメータ：ID
+      course: "01", // パスパラメータ：course
+      id: "01", // パスパラメータ：id
       scenario: [], // シナリオ
-      // 表示制御
+
+      // コントロール
+      isCourseIndex: false, // コースもくじ
+      isPageIndex: true, // ぺーじもくじ
       isText: true, // 字幕表示
       isActor: true, // キャラ表示
-      isMenu: true, // もくじ表示
       isVoice: true, // 音声再生
       isSkip: true, // オートスキップ
+
       // 再生コントロール
       pageIndex: 0, // スライドの現在地
       messageIndex: 0, // メッセージの現在地
@@ -148,18 +186,45 @@ export default {
       voiceSpeed: 1, // 再生速度
     };
   },
-  mounted() {
-    // jsonからコースを取得
-    const url = `./${this.course}/${this.id}/scenario.json`;
-    axios
-      .get(url)
-      .then((response) => (this.scenario = response.data))
-      .catch((error) => {
-        console.log(error);
-        this.scenario = [{ part: "制作中" }];
-      });
+  async mounted() {
+    this.course = this.$route.params.course; // パスパラメータ：course
+    this.id = this.$route.params.id; // パスパラメータ：id
+    await this.getCourse();
+    await this.getScenario();
   },
   methods: {
+    // courseを取得
+    getCourse() {
+      const url = "../" + this.course + "/index.json";
+      axios
+        .get(url)
+        .then((response) => (this.courseIndex = response.data))
+        .catch((error) => {
+          console.log("course制作中です", error);
+          this.courseIndex = [{ part: "制作中" }];
+        });
+    },
+
+    // scenarioを取得
+    getScenario() {
+      const scenariourl =
+        "../" + this.course + "/" + this.id + "/scenario.json";
+      axios
+        .get(scenariourl)
+        .then((response) => (this.scenario = response.data))
+        .catch((error) => {
+          console.log("scenario制作中です", error);
+          this.scenario = [{ part: "制作中" }];
+        });
+    },
+
+    // 前のページに戻る際にリセット
+    reset() {
+      this.messageVoice.pause();
+      this.pageIndex = 0;
+      this.messageIndex = 0;
+    },
+
     // 操作切り替え
     // キャラ表示
     switchActor() {
@@ -193,10 +258,18 @@ export default {
       }
     },
 
+    // 移動：シナリオジャンプ
+    courseJump(href) {
+      this.messageVoice.pause();
+      this.id = href;
+      this.getScenario();
+      this.pageIndex = 0;
+      this.messageIndex = 0;
+    },
+
     // 再生コントロール
     // 進む
     next() {
-      this.messageVoice.pause();
       this.messageIndex++;
       // 各スライドの最終メッセージ⇒次のスライド
       if (this.messageText == "LAST") {
@@ -209,24 +282,24 @@ export default {
         }
       }
 
-      // 音声ありの時のみ再生
       if (this.isVoice) {
         this.voicePlay();
       }
     },
 
-    // ボイスセット⇒再生
+    // 音声中断
+    voiceStop() {
+      this.messageVoice.pause();
+    },
+
+    // 音声再生
     voicePlay() {
       // 再生中なら一旦停止
       this.messageVoice.pause();
       // ボイスの有無を判断してセット
       let voice =
         this.scenario[this.pageIndex].message[this.messageIndex].voice;
-      // ボイスが無い時は進む
-      if (!voice) {
-        this.messageIndex++;
-        this.voicePlay();
-      } else {
+      if (voice) {
         this.messageVoice = new Audio(
           "./" + this.course + "/" + this.id + "/voice/" + voice
         );
@@ -239,18 +312,6 @@ export default {
           }
         });
       }
-    },
-
-    // ボイス中断
-    voiceStop() {
-      this.messageVoice.pause();
-    },
-
-    // 前のページに戻る際にリセット
-    reset() {
-      this.messageVoice.pause();
-      this.pageIndex = 0;
-      this.messageIndex = 0;
     },
   },
   computed: {
@@ -310,135 +371,136 @@ export default {
 </script>
 
 <style scoped>
-/* 背景 */
-.wapper {
-  width: 100%;
+.gridlayout {
   height: 100vh;
   overflow: hidden;
-  background-image: url("@/assets/common/background/kumoset.png"),
-    url("@/assets/common/background/kumoset2.png");
-  background-size: cover;
-  background-color: #bae6ff;
-  background-repeat: repeat;
-  background-size: 50% 55vh, 50% 40vh;
-  animation: drifting linear 60s infinite, fuwafuwa ease 20s infinite;
-  position: relative;
   display: grid;
+  grid-template-areas:
+    "coursearea slide pagearea"
+    "coursearea message pagearea";
   grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr 12.5rem;
+  color: white;
 }
-
-@keyframes drifting {
-  0% {
-    background-position-x: 0, 0;
-  }
-  100% {
-    background-position-x: 200%, 100%;
-  }
+a {
+  color: unset;
 }
-@keyframes fuwafuwa {
-  0%,
-  100% {
-    background-position-y: 0, 0;
-  }
-  50% {
-    background-position-y: 10%, -5%;
-  }
+.coursearea {
+  grid-area: coursearea;
 }
-/* メイン */
-main {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+.coursearea .btn {
+  width: 2rem;
+  display: flex;
+  padding: 0.2rem;
+  border-radius: 0.2rem;
+}
+.courseIndex,
+.pageIndex {
+  max-height: calc(100vh - 3rem);
+  overflow: auto;
+}
+.courseIndex .part {
+  padding: 0.5rem 0.5rem 0;
+  color: wheat;
+  font-weight: bold;
+  background-color: var(--back-color-a);
+}
+.courseIndex ul,
+.pageIndex {
+  background-color: var(--back-color-a);
+  margin: 0;
+  padding: 0 0.5rem 0rem 1rem;
+  font-size: large;
+  list-style: none;
+}
+.courseIndex ul li,
+.pageIndex li {
+  cursor: pointer;
+}
+.courseIndex a {
+  display: block;
+}
+.courseIndex a.router-link-exact-active {
+  color: #000;
+}
+.courseIndex ul li a:hover,
+.pageIndex li:hover {
+  color: black;
+  background-color: white;
+  border-radius: unset;
+}
+/* スライドエリア */
+.slide {
+  grid-area: slide;
+  max-height: calc(100vh - 12rem);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-
-/* スライドエリア */
-.slideArea {
-  margin: auto;
-}
-
-/* スライド */
-.slideArea .slideImg {
+.slide img {
   max-width: 100%;
-
-  display: block;
+  max-height: 100%;
   margin: auto;
-}
-.texton {
-  max-height: calc(100vh - 16rem);
-}
-.textoff {
-  max-height: calc(100vh - 4rem);
+  border-radius: 0.5rem;
 }
 
-/* メッセージエリア */
-.messageArea {
-  margin: auto 0 0.5rem;
-  white-space: pre-line;
+/* 字幕エリア */
+.message {
+  grid-area: message;
+  margin: 0.5rem 0;
 }
-
-/* メッセージメニュー */
-.messageMenu {
+.message .btn {
+  margin-right: 0.2rem;
+  padding: 0.2rem;
   display: flex;
-  justify-content: space-between;
+  border-radius: 0.5rem;
 }
-.messageMenu button {
+.istrue {
+  color: #000000;
+  background-color: ghostwhite;
+}
+.isfalse {
+  background: var(--disable);
+}
+.actorimg {
+  max-height: 100%;
+  background-color: var(--dark);
+  border-radius: 0.5rem;
+}
+.messageWindow {
+  flex: 1;
+  background-color: var(--dark);
+  border-radius: 0.5rem;
+  display: block;
+  overflow: auto;
+  font-size: 1.8rem;
   padding: 0.5rem;
-  border: solid darkcyan;
-  border-radius: 10px;
-  font-weight: bold;
+  white-space: break-spaces;
   cursor: pointer;
 }
+.actorname {
+  font-size: x-large;
+  padding: 0 0.5rem;
+  background-color: var(--dark);
+  border-radius: 0.5rem;
+}
 .voiceSpeed {
+  padding: 0.2rem;
   display: flex;
   align-items: center;
-  background-color: rgba(240, 240, 240, 0.5);
+  color: black;
+  background-color: ghostwhite;
   border-radius: 0.5rem;
 }
 .voiceSpeed input {
   width: 3rem;
-  accent-color: var(--main-color);
+  accent-color: var(--dark);
 }
 .voiceSpeed div {
   width: 2rem;
+  text-align: center;
 }
-
-/* アクター */
-.actorName {
-  padding: 0.4rem;
-  font-size: x-large;
-  color: white;
-  background-color: rgb(0, 0, 0, 0.8);
-  border: solid 1px;
-  border-radius: 10px;
-}
-.actor {
-  max-height: 100%;
-  margin: auto;
-  border-radius: 10px;
-}
-
-/* メッセージウィンドウ */
-.messageArea .messagewindow {
-  box-sizing: border-box;
-  height: 12rem;
-  background-color: rgb(0, 0, 0, 0.8);
-  border-radius: 10px;
-  display: flex;
-  color: white;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-.messageArea .messagewindow .message {
-  padding: 0.5rem 1rem;
-  width: 100%;
-  overflow-y: auto;
-  font-size: 1.8rem;
-}
-
-.messageArea .messagewindow .message::after {
+.messageWindow::after {
   content: "▼";
   animation: blink 1s ease-in-out infinite alternate;
 }
@@ -452,113 +514,26 @@ main {
     opacity: 1;
   }
 }
-
-/* サイドメニュー */
-.leftMenu,
-.rightMenu {
-  padding: 1rem;
+/* ページ */
+.pagearea {
+  grid-area: pagearea;
 }
-
-.xlarge {
-  font-size: x-large;
-}
-
-/* 左右メニュー */
-nav ul {
-  margin-top: 0;
-  width: max-content;
-  max-height: 90vh;
-  overflow: auto;
-  background-color: rgba(240, 240, 240, 0.8);
-  padding: 0.5rem;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 2px 2px 4px;
-  list-style: none;
-  font-size: larger;
-}
-
-.rightMenu button {
-  display: block;
+.pagearea .btn {
   margin-left: auto;
+  width: 2rem;
+  padding: 0.2rem;
+  display: flex;
+  border-radius: 0.2rem;
+}
+.pageIndex {
+  padding: 0.5rem;
 }
 
-nav ul li {
-  border-radius: 5px;
-  padding: 0 0.2rem;
+.btn {
+  font-size: larger;
   cursor: pointer;
-  border-bottom: 2px solid gainsboro;
 }
-nav ul li:hover {
-  color: black;
-  background-color: #fffcf0;
-}
-/* アクティブ背景 */
-.isTrue {
-  color: white;
-  background: #60bac0;
-}
-
-.isFalse {
-  background-color: gray;
-  opacity: 0.8;
-}
-
-/* レスポンシブ */
-@media (max-width: 1025px) {
-  .leftMenu,
-  .rightMenu {
-    padding: 0rem;
-  }
-  .messageArea .messagewindow .message {
-    font-size: unset;
-  }
-
-  nav ul {
-    font-size: medium;
-  }
-}
-@media (max-width: 800px) {
-  .actor {
-    display: none;
-  }
-}
-
-@media (max-width: 500px) {
-  .wapper {
-    display: grid;
-    grid-template:
-      "leftMenu rightMenu" auto
-      "main main" 1fr;
-  }
-  .leftMenu {
-    grid-area: leftMenu;
-  }
-  .rightMenu {
-    grid-area: rightMenu;
-    margin-left: auto;
-  }
-  main {
-    grid-area: main;
-  }
-  .messageMenu {
-    display: unset;
-  }
-}
-
-@media (max-height: 500px) {
-  .slideArea .slideImg {
-    max-height: calc(100vh - 3rem);
-  }
-  .messageArea .messagewindow,
-  .textbtn {
-    display: none;
-  }
-  .messageMenu button {
-    padding: 0 0.5rem;
-    font-weight: normal;
-  }
-  .actorName {
-    padding: 0 0.5rem;
-  }
+.icon {
+  width: 2rem;
 }
 </style>
