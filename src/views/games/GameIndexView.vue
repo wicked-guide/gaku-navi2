@@ -47,7 +47,9 @@ export default {
 
 <style scoped>
 main {
+  height: 100vh;
   padding: 2rem;
+  background-color: var(--back-color);
 }
 .title {
   font-size: x-large;
@@ -63,7 +65,7 @@ main {
 .card {
   list-style: none;
   background-color: white;
-  border: solid var(--main-color) 1px;
+  border: solid var(--main-color-b) 1px;
   border-radius: 0.5rem;
 }
 
@@ -89,7 +91,7 @@ main {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: var(--main-color);
+  background-color: var(--main-color-b);
   color: white;
   border-radius: 5px;
 }

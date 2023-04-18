@@ -307,7 +307,9 @@ export default {
 
 <style scoped>
 .wapper {
-  padding: 1rem;
+  height: 100vh;
+  padding: 2rem;
+  background-color: var(--back-color);
 }
 .title {
   margin: 0.5rem;
@@ -342,14 +344,14 @@ export default {
 }
 .display-box .th {
   color: white;
-  background-color: var(--main-color);
+  background-color: var(--main-color-b);
 }
 .display-box div {
   margin: 1px;
-  border: rgba(var(--main-color-rgb), 0.3) solid 1px;
+  border: var(--main-color-b) solid 1px;
 }
 .here {
-  background-color: rgba(var(--main-color-rgb), 0.5);
+  background-color: var(--main-color-ba);
 }
 .notHere {
   background-color: white;

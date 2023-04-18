@@ -6,6 +6,8 @@
 :root {
   --main-color: #39666c;
   --main-color-a: #39666c55;
+  --main-color-b: #60bac0;
+  --main-color-ba: #60bac077;
   --sub-color: rgb(253, 117, 76);
   --back-color: rgb(255, 252, 240);
   --back-color-a: #00000077;
@@ -25,12 +27,35 @@ body {
   background-size: cover;
   caret-color: transparent;
 }
-
+@keyframes drifting {
+  0% {
+    background-position-x: 0, 0;
+  }
+  100% {
+    background-position-x: 200%, 100%;
+  }
+}
+@keyframes fuwafuwa {
+  0%,
+  100% {
+    background-position-y: 0, 0;
+  }
+  50% {
+    background-position-y: 10%, -5%;
+  }
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
+  height: 100vh;
+  background-image: url("@/assets/common/background/kumoset.png"),
+    url("@/assets/common/background/kumoset2.png");
+  background-size: cover;
+  background-repeat: repeat;
+  background-size: 50% 55vh, 50% 40vh;
+  animation: drifting linear 60s infinite, fuwafuwa ease 20s infinite;
 }
 
 .logo {
@@ -90,6 +115,9 @@ a:hover {
 .mlauto {
   margin-left: auto;
 }
+.nowrap {
+  white-space: nowrap;
+}
 input {
   caret-color: var(--main-color);
 }
@@ -100,7 +128,7 @@ input {
   display: flex;
   align-items: center;
   color: white;
-  background-color: var(--main-color);
+  background-color: var(--main-color-b);
   border-radius: 0.2rem;
   cursor: pointer;
   user-select: none;

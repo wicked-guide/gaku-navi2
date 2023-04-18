@@ -2,14 +2,12 @@
   <section class="gridlayout">
     <!-- もくじ -->
     <section class="coursearea">
-      <div>
-        <router-link to="/">
-          <button class="btn" @click="reset">
-            <img src="../assets/common/img/left.svg" alt="戻る" class="icon" />
-          </button>
-        </router-link>
-      </div>
-
+      <router-link :to="{ name: 'IndexList', params: { course: course } }">
+        <button class="btn" @click="reset">
+          <img src="../assets/common/img/left.svg" alt="戻る" class="icon" />
+        </button>
+      </router-link>
+      <br v-show="!isCourseIndex" />
       <button class="btn" @click="isCourseIndex = !isCourseIndex">
         <!-- &equiv; -->
         <img src="../assets/common/img/menu.svg" alt="メニュー" class="icon" />
@@ -58,7 +56,7 @@
 
       <section class="flex-col w100">
         <!-- 操作メニュー -->
-        <section class="flex">
+        <section class="flex nowrap">
           <button
             :class="['btn', 'nowrap', isActor ? 'istrue' : 'isfalse']"
             @click="isActor = !isActor"
@@ -186,16 +184,16 @@ export default {
       voiceSpeed: 1, // 再生速度
     };
   },
-  async mounted() {
+  mounted() {
     this.course = this.$route.params.course; // パスパラメータ：course
     this.id = this.$route.params.id; // パスパラメータ：id
-    await this.getCourse();
-    await this.getScenario();
+    this.getCourse();
+    this.getScenario();
   },
   methods: {
     // courseを取得
     getCourse() {
-      const url = "../" + this.course + "/index.json";
+      const url = "./" + this.course + "/index.json";
       axios
         .get(url)
         .then((response) => (this.courseIndex = response.data))
@@ -207,8 +205,7 @@ export default {
 
     // scenarioを取得
     getScenario() {
-      const scenariourl =
-        "../" + this.course + "/" + this.id + "/scenario.json";
+      const scenariourl = "./" + this.course + "/" + this.id + "/scenario.json";
       axios
         .get(scenariourl)
         .then((response) => (this.scenario = response.data))
@@ -379,7 +376,7 @@ export default {
     "coursearea slide pagearea"
     "coursearea message pagearea";
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr 12.5rem;
+  grid-template-rows: 1fr 13rem;
   color: white;
 }
 a {
@@ -390,7 +387,7 @@ a {
 }
 .coursearea .btn {
   width: 2rem;
-  display: flex;
+  display: inline-flex;
   padding: 0.2rem;
   border-radius: 0.2rem;
 }
@@ -403,11 +400,11 @@ a {
   padding: 0.5rem 0.5rem 0;
   color: wheat;
   font-weight: bold;
-  background-color: var(--back-color-a);
+  background-color: var(--dark);
 }
 .courseIndex ul,
 .pageIndex {
-  background-color: var(--back-color-a);
+  background-color: var(--dark);
   margin: 0;
   padding: 0 0.5rem 0rem 1rem;
   font-size: large;
@@ -447,7 +444,9 @@ a {
 /* 字幕エリア */
 .message {
   grid-area: message;
-  margin: 0.5rem 0;
+  margin: 0.5rem auto;
+  width: 100%;
+  max-width: 1200px;
 }
 .message .btn {
   margin-right: 0.2rem;
@@ -469,6 +468,7 @@ a {
 }
 .messageWindow {
   flex: 1;
+  max-width: 1200px;
   background-color: var(--dark);
   border-radius: 0.5rem;
   display: block;

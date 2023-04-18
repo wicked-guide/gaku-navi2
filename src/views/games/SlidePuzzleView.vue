@@ -149,7 +149,9 @@ export default {
 
 <style scoped>
 .wapper {
-  padding: 1rem;
+  height: 100vh;
+  padding: 2rem;
+  background-color: var(--back-color);
 }
 .title {
   margin: 1rem;
@@ -162,13 +164,13 @@ export default {
   font-size: 3rem;
   text-align: center;
   background: white;
-  border: 1px solid var(--main-color);
+  border: 1px solid var(--main-color-b);
   border-radius: 0.5rem;
   box-shadow: grey 5px 5px 5px;
   cursor: pointer;
 }
 .tile:hover {
-  background-color: var(--main-color-a);
+  background-color: var(--main-color-ba);
 }
 .grid {
   display: grid;

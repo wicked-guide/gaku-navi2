@@ -704,6 +704,8 @@ export default {
 <style scoped>
 .wapper {
   padding: 1rem;
+  height: 100vh;
+  background-color: var(--back-color);
 }
 .menuselect {
   display: flex;
@@ -712,7 +714,7 @@ export default {
   width: fit-content;
   padding: 0.2rem;
   list-style: none;
-  border: solid 1px rgba(var(--main-color-rgb), 0.5);
+  border: solid 1px var(--main-color-b);
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -808,6 +810,7 @@ export default {
 }
 
 .here {
-  background-color: rgba(var(--main-color-rgb), 0.5) !important;
+  color: white;
+  background-color: var(--main-color-b) !important;
 }
 </style>

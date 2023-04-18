@@ -178,7 +178,7 @@ main {
 
 .card:hover {
   box-shadow: 3px 3px 5px;
-  background: #ffd7c3;
+  background: #fff0dd;
 }
 
 .card img {
@@ -198,7 +198,7 @@ main {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: var(--main-color);
+  background-color: var(--main-color-b);
   color: white;
   border-radius: 5px;
 }

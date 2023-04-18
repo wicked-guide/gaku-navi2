@@ -208,6 +208,8 @@ export default {
 <style scoped>
 .wapper {
   padding: 1rem;
+  height: 100vh;
+  background-color: var(--back-color);
 }
 .layout {
   display: grid;
@@ -269,13 +271,13 @@ export default {
   grid-column: 2/4;
 }
 .here {
-  background-color: rgba(var(--main-color-rgb), 0.5);
+  background-color: var(--main-color-ba);
   border-radius: 0.5rem;
 }
 .hintOn {
   padding: 0.5rem;
   text-align: center;
-  background-color: rgba(var(--main-color-rgb), 0.5);
+  background-color: var(--main-color-b);
   border: solid 1px gray;
   border-radius: 0.5rem;
 }

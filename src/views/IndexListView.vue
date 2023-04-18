@@ -67,15 +67,18 @@ export default {
 
 <style scoped>
 .wapper {
-  margin: 2rem auto;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
+
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 1rem;
 }
 
-@media (min-width: 800px) {
+@media (max-width: 800px) {
   .wapper {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 1rem;
+    max-height: calc(100vh - 7rem);
+    overflow: auto;
+    display: block;
   }
 }
 
@@ -102,8 +105,8 @@ export default {
   padding-left: 0.5rem;
   font-size: large;
   font-weight: bold;
-  border-left: var(--main-color) solid 5px;
-  border-bottom: solid var(--main-color) thin;
+  border-left: var(--main-color-b) solid 5px;
+  border-bottom: solid var(--main-color-b) thin;
 }
 
 .contentIndex ol {
