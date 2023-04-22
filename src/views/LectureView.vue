@@ -386,7 +386,7 @@ a {
   grid-area: coursearea;
 }
 .coursearea .btn {
-  width: 2rem;
+  /* width: 2rem; */
   display: inline-flex;
   padding: 0.2rem;
   border-radius: 0.2rem;
@@ -429,8 +429,10 @@ a {
 /* スライドエリア */
 .slide {
   grid-area: slide;
+  max-width: 1500px;
   max-height: calc(100vh - 12rem);
   overflow: hidden;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -446,7 +448,7 @@ a {
   grid-area: message;
   margin: 0.5rem auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1500px;
 }
 .message .btn {
   margin-right: 0.2rem;
@@ -468,7 +470,6 @@ a {
 }
 .messageWindow {
   flex: 1;
-  max-width: 1200px;
   background-color: var(--dark);
   border-radius: 0.5rem;
   display: block;
@@ -520,7 +521,7 @@ a {
 }
 .pagearea .btn {
   margin-left: auto;
-  width: 2rem;
+  /* width: 2rem; */
   padding: 0.2rem;
   display: flex;
   border-radius: 0.2rem;
