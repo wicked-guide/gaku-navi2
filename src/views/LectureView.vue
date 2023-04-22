@@ -155,6 +155,9 @@
         </li>
       </ul>
     </section>
+
+    <!-- やじ -->
+    <div class="yaji" v-show="yajiText">{{ yajiText }}</div>
   </section>
 </template>
 
@@ -363,6 +366,15 @@ export default {
         return "LAST";
       }
     },
+
+    // ヤジテキスト
+    yajiText() {
+      try {
+        return this.scenario[this.pageIndex].message[this.messageIndex].yaji;
+      } catch {
+        return "LAST";
+      }
+    },
   },
 };
 </script>
@@ -536,5 +548,27 @@ a {
 }
 .icon {
   width: 2rem;
+}
+
+.yaji {
+  position: absolute;
+  right: 2rem;
+  bottom: 14rem;
+  font-size: xx-large;
+  color: black;
+  background-color: floralwhite;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  white-space: break-spaces;
+}
+.yaji::after {
+  content: "";
+  position: absolute;
+  right: -1.2rem;
+  bottom: 0;
+  border-style: solid;
+  border-color: transparent transparent transparent floralwhite;
+  border-width: 0.5rem 0 1rem 1.5rem;
+  transform: rotate(17deg);
 }
 </style>
