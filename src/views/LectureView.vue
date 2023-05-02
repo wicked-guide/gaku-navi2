@@ -508,6 +508,7 @@ a {
 .voiceSpeed input {
   width: 3rem;
   accent-color: var(--dark);
+  cursor: pointer;
 }
 .voiceSpeed div {
   width: 2rem;
