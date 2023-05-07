@@ -8,7 +8,7 @@
     <div class="title">スライドパズル</div>
 
     <!-- ゲーム -->
-    <div @click="shuffle" class="btn-main">shuffle</div>
+    <div @click="shuffle" class="btn is-main">shuffle</div>
     <section class="flex-c">
       <section class="grid">
         <div
@@ -164,13 +164,13 @@ export default {
   font-size: 3rem;
   text-align: center;
   background: white;
-  border: 1px solid var(--main-color-b);
+  border: 1px solid var(--main-color-l);
   border-radius: 0.5rem;
   box-shadow: grey 5px 5px 5px;
   cursor: pointer;
 }
 .tile:hover {
-  background-color: var(--main-color-ba);
+  background-color: var(--main-color-lt);
 }
 .grid {
   display: grid;

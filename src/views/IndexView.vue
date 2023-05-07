@@ -20,7 +20,7 @@
 
     <!-- メイン -->
     <section class="wapper">
-      <section class="flex">
+      <section class="min800">
         <main>
           <!-- 一覧 -->
           <section class="grid">
@@ -76,7 +76,7 @@
         </section>
 
         <!-- コピーライト -->
-        <small>&copy;2022 witship</small>
+        <small>&copy; witship</small>
       </footer>
     </section>
   </section>
@@ -155,6 +155,7 @@ main {
   margin: 0 1rem 1rem;
   flex: 1;
 }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -198,7 +199,7 @@ main {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: var(--main-color-b);
+  background-color: var(--main-color-l);
   color: white;
   border-radius: 5px;
 }
@@ -210,7 +211,7 @@ main {
 /* サブ */
 aside {
   height: fit-content;
-  margin-right: 1rem;
+  margin: 0 1rem;
   padding: 0.5rem;
   color: white;
   white-space: nowrap;
@@ -223,5 +224,16 @@ footer {
   margin: auto 0 0.5rem;
   text-align: center;
   color: white;
+}
+
+@media (min-width: 800px) {
+  .min800 {
+    display: flex;
+  }
+  aside {
+    margin-left: 0;
+    position: sticky;
+    top: 0;
+  }
 }
 </style>

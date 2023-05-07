@@ -105,8 +105,8 @@ export default {
   padding-left: 0.5rem;
   font-size: large;
   font-weight: bold;
-  border-left: var(--main-color-b) solid 5px;
-  border-bottom: solid var(--main-color-b) thin;
+  border-left: var(--main-color-l) solid 5px;
+  border-bottom: solid var(--main-color-l) thin;
 }
 
 .contentIndex ol {

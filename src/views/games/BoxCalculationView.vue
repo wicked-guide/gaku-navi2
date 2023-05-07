@@ -13,7 +13,7 @@
           <!-- 時間 -->
           <div class="time-area flex">
             <span
-              class="material-icons btn-main myauto"
+              class="material-icons btn is-main myauto"
               :class="{ offbtn: !showTime }"
               @click="showTime = !showTime"
             >
@@ -21,11 +21,11 @@
             </span>
             <span class="score" v-show="showTime">{{ score }}</span>
           </div>
-          <div class="btn-main" @click="shuffleXY">
+          <div class="btn is-main" @click="shuffleXY">
             <span class="material-icons"> shuffle </span>(Esc)
           </div>
           <div
-            class="btn-main"
+            class="btn is-main"
             @click="
               isPlus = !isPlus;
               shuffleXY();
@@ -345,14 +345,14 @@ export default {
 }
 .display-box .th {
   color: white;
-  background-color: var(--main-color-b);
+  background-color: var(--main-color-l);
 }
 .display-box div {
   margin: 1px;
-  border: var(--main-color-b) solid 1px;
+  border: var(--main-color-l) solid 1px;
 }
 .here {
-  background-color: var(--main-color-ba);
+  background-color: var(--main-color-lt);
 }
 .notHere {
   background-color: white;
@@ -397,6 +397,7 @@ export default {
   background-color: white;
   border: solid 1px gray;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 .keyEnter {
   grid-column: 2/4;

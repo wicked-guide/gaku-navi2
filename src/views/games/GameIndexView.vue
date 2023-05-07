@@ -65,7 +65,7 @@ main {
 .card {
   list-style: none;
   background-color: white;
-  border: solid var(--main-color-b) 1px;
+  border: solid var(--main-color-l) 1px;
   border-radius: 0.5rem;
 }
 
@@ -91,7 +91,7 @@ main {
   margin-left: 0.3rem;
   padding: 0.2rem;
   font-size: small;
-  background-color: var(--main-color-b);
+  background-color: var(--main-color-l);
   color: white;
   border-radius: 5px;
 }

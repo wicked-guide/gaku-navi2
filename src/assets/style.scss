@@ -1,8 +1,8 @@
 :root {
   --main-color: #39666c;
-  --main-color-a: #39666c55;
-  --main-color-b: #60bac0;
-  --main-color-ba: #60bac077;
+  --main-color-l: #60bac0;
+  --main-color-lt: #60bac077;
+  --main-color-d: #2d5055;
   --sub-color: rgb(253, 117, 76);
   --back-color: rgb(255, 252, 240);
   --back-color-a: #00000077;
@@ -117,16 +117,19 @@ input {
   caret-color: var(--main-color);
 }
 /* コンポーネント */
-.btn-main {
+.btn {
   width: fit-content;
   padding: 0.3rem;
   display: flex;
   align-items: center;
-  color: white;
-  background-color: var(--main-color-b);
+
   border-radius: 0.2rem;
   cursor: pointer;
   user-select: none;
+  &.is-main {
+    color: white;
+    background-color: var(--main-color-l);
+  }
 }
 .btn-off {
   width: fit-content;

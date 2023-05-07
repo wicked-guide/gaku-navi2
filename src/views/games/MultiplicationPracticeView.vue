@@ -27,13 +27,13 @@
           <div class="hintbtn flex">
             <span
               @click="showHint = !showHint"
-              :class="showHint ? 'btn-main' : 'btn-off'"
+              :class="showHint ? 'btn is-main' : 'btn-off'"
             >
               ヒント
             </span>
             <span
               @click="showcheat = !showcheat"
-              :class="showcheat ? 'btn-main' : 'btn-off'"
+              :class="showcheat ? 'btn is-main' : 'btn-off'"
               v-show="showHint"
             >
               カンニング
@@ -281,13 +281,13 @@ export default {
   grid-column: 2/4;
 }
 .here {
-  background-color: var(--main-color-ba);
+  background-color: var(--main-color-lt);
   border-radius: 0.5rem;
 }
 .hintOn {
   padding: 0.5rem;
   text-align: center;
-  background-color: var(--main-color-b);
+  background-color: var(--main-color-l);
   border: solid 1px gray;
   border-radius: 0.5rem;
 }

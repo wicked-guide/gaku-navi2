@@ -716,7 +716,7 @@ export default {
   width: fit-content;
   padding: 0.2rem;
   list-style: none;
-  border: solid 1px var(--main-color-b);
+  border: solid 1px var(--main-color-l);
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -813,6 +813,6 @@ export default {
 
 .here {
   color: white;
-  background-color: var(--main-color-b) !important;
+  background-color: var(--main-color-l) !important;
 }
 </style>
