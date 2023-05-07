@@ -704,8 +704,10 @@ export default {
 <style scoped>
 .wapper {
   padding: 1rem;
-  height: 100vh;
+  height: 100%;
+  box-sizing: border-box;
   background-color: var(--back-color);
+  user-select: none;
 }
 .menuselect {
   display: flex;

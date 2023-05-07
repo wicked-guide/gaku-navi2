@@ -307,7 +307,8 @@ export default {
 
 <style scoped>
 .wapper {
-  height: 100vh;
+  min-height: 100%;
+  box-sizing: border-box;
   padding: 2rem;
   background-color: var(--back-color);
 }

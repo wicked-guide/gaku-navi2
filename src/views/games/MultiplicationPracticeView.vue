@@ -208,8 +208,10 @@ export default {
 <style scoped>
 .wapper {
   padding: 1rem;
-  height: 100vh;
+  min-height: 100%;
+  box-sizing: border-box;
   background-color: var(--back-color);
+  user-select: none;
 }
 .layout {
   display: grid;
@@ -232,10 +234,15 @@ export default {
 .formula {
   max-width: 500px;
   margin: 0 auto;
+  padding: 0.5rem;
   text-align: center;
   font-size: 3rem;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  position: sticky;
+  top: 2rem;
+  z-index: 10;
+  background-color: var(--back-color);
 }
 .display-box {
   max-width: 500px;
@@ -253,6 +260,8 @@ export default {
   margin: auto;
 }
 .keylayout {
+  position: sticky;
+  top: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -266,6 +275,7 @@ export default {
   background-color: white;
   border: solid 1px gray;
   border-radius: 0.5rem;
+  cursor: pointer;
 }
 .keyEnter {
   grid-column: 2/4;
