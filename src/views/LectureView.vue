@@ -62,7 +62,7 @@
             @click="isActor = !isActor"
           >
             ・ω・
-            <!-- <span class="material-icons md-18">face</span> -->
+            <!-- <img src="../assets/common/img/face.svg" alt="顔" class="icon" /> -->
           </button>
           <span class="actorname">{{ actorName }}</span>
           <!-- <button
@@ -120,9 +120,9 @@
             />
             <input
               type="range"
-              min="0.5"
+              min="0.6"
               max="2"
-              step="0.1"
+              step="0.2"
               v-model="voiceSpeed"
             />
             <div>
@@ -311,6 +311,9 @@ export default {
             this.next();
           }
         });
+      } else {
+        this.messageIndex++;
+        this.voicePlay();
       }
     },
   },
@@ -390,6 +393,7 @@ export default {
   grid-template-columns: auto 1fr auto;
   grid-template-rows: 1fr 13rem;
   color: white;
+  user-select: none;
 }
 a {
   color: unset;
@@ -555,12 +559,13 @@ a {
   position: absolute;
   right: 2rem;
   bottom: 14rem;
-  font-size: xx-large;
+  font-size: x-large;
   color: black;
   background-color: floralwhite;
   padding: 0.5rem;
   border-radius: 1rem;
   white-space: break-spaces;
+  animation: SlideIn 5s forwards;
 }
 .yaji::after {
   content: "";
@@ -571,5 +576,22 @@ a {
   border-color: transparent transparent transparent floralwhite;
   border-width: 0.5rem 0 1rem 1.5rem;
   transform: rotate(17deg);
+}
+
+@keyframes SlideIn {
+  0% {
+    opacity: 0; /*初期状態では透明に*/
+    transform: translateX(100%);
+  }
+  5% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>
