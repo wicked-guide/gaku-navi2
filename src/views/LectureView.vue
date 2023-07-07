@@ -44,6 +44,18 @@
       <img :src="slideImage" alt="slide" />
     </section>
 
+    <!-- 進捗 -->
+    <section class="progress">
+      <button
+        v-for="(item, index) in progress"
+        :key="index"
+        :class="['w100', { isfalse: index != messageIndex }]"
+        @click="messageJump(index)"
+      >
+        {{ item }}
+      </button>
+    </section>
+
     <!-- メッセージ -->
     <section class="message flex">
       <!-- アクター -->
@@ -248,6 +260,15 @@ export default {
     switchMenu() {
       this.isMenu = !this.isMenu;
     },
+
+    // 移動：メッセージジャンプ
+    messageJump(index) {
+      this.messageIndex = index;
+      this.messageVoice.pause();
+      if (this.isVoice) {
+        this.voicePlay();
+      }
+    },
     // 移動：もくじジャンプ
     pageJump(index) {
       this.pageIndex = index;
@@ -257,7 +278,6 @@ export default {
         this.voicePlay();
       }
     },
-
     // 移動：シナリオジャンプ
     courseJump(href) {
       this.messageVoice.pause();
@@ -361,6 +381,14 @@ export default {
       }
     },
 
+    // プログレス
+    progress() {
+      try {
+        return this.scenario[this.pageIndex].message.length;
+      } catch {
+        return "LAST";
+      }
+    },
     // メッセージテキスト
     messageText() {
       try {
@@ -389,9 +417,10 @@ export default {
   display: grid;
   grid-template-areas:
     "coursearea slide pagearea"
+    "coursearea progress pagearea"
     "coursearea message pagearea";
   grid-template-columns: auto 1fr auto;
-  grid-template-rows: 1fr 13rem;
+  grid-template-rows: 1fr auto 13rem;
   color: white;
   user-select: none;
 }
@@ -457,6 +486,20 @@ a {
   max-height: 100%;
   margin: auto;
   border-radius: 0.5rem;
+}
+
+/* 進捗 */
+.progress {
+  width: 100%;
+  grid-area: progress;
+  max-width: 1500px;
+  margin: 0.5rem auto 0;
+  display: flex;
+}
+.progress button {
+  cursor: pointer;
+  border: solid 1px var(--disable);
+  border: solid 1px var(--disable);
 }
 
 /* 字幕エリア */
